@@ -1,25 +1,18 @@
+import "./styles/globals.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-} from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./apollo/client";
 import App from "./App";
-import "./styles/globals.css";
-// Create Apollo Client instance
-const client = new ApolloClient({
-  uri: "http://localhost:8080/graphql", // Replace with your actual GraphQL endpoint
-  cache: new InMemoryCache(),
-});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
         <App />
-      </BrowserRouter>
-    </ApolloProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
+

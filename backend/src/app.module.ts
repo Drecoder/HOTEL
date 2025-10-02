@@ -1,18 +1,18 @@
 // backend/src/app.module.ts
 
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ConfigModule } from '@nestjs/config';
-import { join } from 'path';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { GraphQLModule } from "@nestjs/graphql";
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
+import { ConfigModule } from "@nestjs/config";
+import { join } from "path";
 
 // Local Imports
-import { typeOrmConfig } from './db/postgres.config';
-import { RoomModule } from './room/room.module'; 
-import { EventsModule } from './events/events.module'; 
-import { PubSubModule } from './graphql/pubsub.module';
-import { KafkaService } from './kafka/kafka.service';
+import { typeOrmConfig } from "./db/postgres.config";
+import { RoomModule } from "./room/room.module";
+import { EventsModule } from "./events/events.module";
+import { PubSubModule } from "./graphql/pubsub.module";
+import { KafkaService } from "./kafka/kafka.service";
 
 @Module({
   imports: [
@@ -27,18 +27,16 @@ import { KafkaService } from './kafka/kafka.service';
     // 3. GraphQL Setup
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       sortSchema: true,
+      subscriptions: {
+        "graphql-ws": true, // enable graphql-ws
+      },
     }),
 
-    // 4. Feature Modules
-    RoomModule,
-
-    // 5. Infrastructure Module
-    EventsModule,
-
-    // 6. PubSub Module
     PubSubModule,
+    RoomModule,
+    EventsModule,
   ],
   providers: [KafkaService],
 })

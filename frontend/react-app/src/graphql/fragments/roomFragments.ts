@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ROOM_FRAGMENT = gql`
-  fragment RoomFields on Room {
+  fragment RoomFields on RoomType { 
     id
     roomNumber
     status

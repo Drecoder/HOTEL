@@ -3,6 +3,7 @@ import { RoomService } from "../../src/room/room.service";
 import { RoomEntity } from "../../src/room/room.entity";
 import { Booking, BookingStatus } from "../../src/booking/entities/booking.entity";
 import { EventsService } from "../../src/events/events.service";
+import { PubSubService } from "../../src/graphql/pubsub.service";
 import { getRepositoryToken } from "@nestjs/typeorm";
 import { RoomStatus } from "../../src/common/constants/room-status.constants";
 import { jest, describe, beforeEach, it, expect } from "@jest/globals";
@@ -10,48 +11,47 @@ import { EntityManager } from "typeorm";
 
 describe("RoomService with in-memory DB", () => {
   let service: RoomService;
-  let eventsService: { publish: jest.MockedFunction<(args: any) => Promise<boolean>> };
+  let eventsService: { publish: jest.MockedFunction<(...args: any[]) => Promise<void>> };
 
   let rooms: RoomEntity[];
   let bookings: Booking[];
 
   // --- Room repository mock ---
-  const createRoomRepo = () => ({
-    find: jest.fn(() => Promise.resolve(rooms)),
-    findOne: jest.fn(({ where: { roomNumber, id } }) => {
-      const r = rooms.find(r => r.roomNumber === roomNumber || r.id === id);
-      return Promise.resolve(r || null);
-    }),
-    save: jest.fn((room: RoomEntity) => {
-      const index = rooms.findIndex(r => r.id === room.id);
-      if (index >= 0) rooms[index] = room;
-      else rooms.push(room);
-      return Promise.resolve(room);
-    }),
-    create: jest.fn((data: Partial<RoomEntity> = {}): RoomEntity => ({
-      id: rooms.length + 1,
-      roomNumber: data.roomNumber ?? 0,
-      status: data.status ?? RoomStatus.READY,
-      expectedCheckout: data.expectedCheckout ?? null,
-      bookings: data.bookings ?? [],
-    })),
-
-    // ✅ Mock transaction
-    manager: {
-      transaction: jest.fn(
-        async (fn: (em: EntityManager) => Promise<any>) => {
+  const createRoomRepo = () => {
+    const repo = {
+      find: jest.fn(() => Promise.resolve(rooms)),
+      findOne: jest.fn(({ where: { roomNumber, id } }) => {
+        const r = rooms.find(r => r.roomNumber === roomNumber || r.id === id);
+        return Promise.resolve(r || null);
+      }),
+      save: jest.fn((room: RoomEntity) => {
+        const index = rooms.findIndex(r => r.id === room.id);
+        if (index >= 0) rooms[index] = room;
+        else rooms.push(room);
+        return Promise.resolve(room);
+      }),
+      create: jest.fn((data: Partial<RoomEntity> = {}): RoomEntity => ({
+        id: rooms.length + 1,
+        roomNumber: data.roomNumber ?? 0,
+        status: data.status ?? RoomStatus.READY,
+        expectedCheckout: data.expectedCheckout ?? null,
+        bookings: data.bookings ?? [],
+      })),
+      manager: {
+        transaction: jest.fn(async (fn: (em: EntityManager) => Promise<any>) => {
           const mockEntityManager: Partial<EntityManager> = {
             getRepository: jest.fn((entity) => {
               if (entity === Booking) return bookingRepo;
-              if (entity === RoomEntity) return roomRepo;
+              if (entity === RoomEntity) return repo;
               return {} as any;
             }),
           };
           return fn(mockEntityManager as unknown as EntityManager);
-        }
-      ),
-    },
-  });
+        }),
+      },
+    };
+    return repo;
+  };
 
   // --- Booking repository mock ---
   const createBookingRepo = () => ({
@@ -70,6 +70,11 @@ describe("RoomService with in-memory DB", () => {
   let roomRepo: ReturnType<typeof createRoomRepo>;
   let bookingRepo: ReturnType<typeof createBookingRepo>;
 
+  // Mock PubSubService
+  const pubSubServiceMock = {
+    publish: jest.fn(async () => void 0),
+  };
+
   beforeEach(async () => {
     rooms = [
       { id: 1, roomNumber: 101, status: RoomStatus.READY },
@@ -83,7 +88,8 @@ describe("RoomService with in-memory DB", () => {
 
     roomRepo = createRoomRepo();
     bookingRepo = createBookingRepo();
-    eventsService = { publish: jest.fn(async (_args: any) => true) };
+
+    eventsService = { publish: jest.fn(async () => void 0) };
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -91,6 +97,7 @@ describe("RoomService with in-memory DB", () => {
         { provide: getRepositoryToken(RoomEntity), useValue: roomRepo },
         { provide: getRepositoryToken(Booking), useValue: bookingRepo },
         { provide: EventsService, useValue: eventsService },
+        { provide: PubSubService, useValue: pubSubServiceMock }, // <-- use class, not string
       ],
     }).compile();
 

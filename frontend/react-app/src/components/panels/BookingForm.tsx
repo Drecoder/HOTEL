@@ -60,3 +60,61 @@ const BookingForm: React.FC<BookingFormProps> = ({ onCompleted }) => {
 };
 
 export default BookingForm;
+
+
+// import React, { useState, useEffect } from "react";
+// import { useAvailableRooms, useBookingIds } from "../../hooks/useAvailableRooms";
+
+// interface BookingFormProps {
+//   roomTypeId: number;
+//   startDate: Date;
+//   endDate: Date;
+//   onCompleted?: (selected: { roomId: number; bookingId: number }) => void;
+// }
+
+// const BookingForm: React.FC<BookingFormProps> = ({ roomTypeId, startDate, endDate, onCompleted }) => {
+//   const { rooms, loading: roomsLoading } = useAvailableRooms(roomTypeId, startDate, endDate);
+//   const { bookingIds, loading: bookingsLoading } = useBookingIds();
+
+//   const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
+//   const [selectedBooking, setSelectedBooking] = useState<number | null>(null);
+
+//   // Notify parent when both are selected
+//   useEffect(() => {
+//     if (selectedRoom !== null && selectedBooking !== null) {
+//       onCompleted?.({ roomId: selectedRoom, bookingId: selectedBooking });
+//     }
+//   }, [selectedRoom, selectedBooking, onCompleted]);
+
+//   if (roomsLoading || bookingsLoading) return <p>Loading...</p>;
+
+//   return (
+//     <div className="flex flex-col gap-2">
+//       <label>
+//         Select Room:
+//         <select value={selectedRoom ?? ""} onChange={(e) => setSelectedRoom(Number(e.target.value))}>
+//           <option value="">--Choose Room--</option>
+//           {rooms.map((room) => (
+//             <option key={room.id} value={room.id}>
+//               {room.roomNumber} ({room.status})
+//             </option>
+//           ))}
+//         </select>
+//       </label>
+
+//       <label>
+//         Select Booking:
+//         <select value={selectedBooking ?? ""} onChange={(e) => setSelectedBooking(Number(e.target.value))}>
+//           <option value="">--Choose Booking--</option>
+//           {bookingIds.map((b) => (
+//             <option key={b.id} value={b.id}>
+//               {b.id}
+//             </option>
+//           ))}
+//         </select>
+//       </label>
+//     </div>
+//   );
+// };
+
+// export default BookingForm;

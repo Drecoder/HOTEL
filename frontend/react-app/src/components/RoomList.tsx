@@ -1,6 +1,6 @@
 // src/components/RoomList.tsx
 import React from "react";
-import type { Room } from "../pages/Dashboard";
+import type { Room } from "../types/graphql";
 
 interface RoomListProps {
   rooms?: Room[];

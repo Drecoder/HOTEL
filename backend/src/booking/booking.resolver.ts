@@ -13,6 +13,7 @@ import { RoomService } from '../room/room.service';
 export class BookingResolver {
   constructor(private readonly roomService: RoomService) {}
 
+
   // FRONTDESK MUTATIONS
   @Mutation(() => Booking)
   @Roles(Role.FRONTDESK)

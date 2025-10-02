@@ -17,6 +17,7 @@ import {
 } from "../../src/booking/entities/booking.entity";
 import { Service } from "../../src/booking/entities/service.entity";
 import { EventsService } from "../../src/events/events.service";
+import { PubSubService } from "../../src/graphql/pubsub.service"; // ✅ Add import
 import { RoomStatus } from "../../src/common/constants/room-status.constants";
 import { DataSource } from "typeorm";
 
@@ -28,9 +29,11 @@ describe("RoomService (Integration)", () => {
   let dataSource: DataSource;
 
   const eventsServiceMock: Partial<EventsService> = {
-    publish: jest.fn(
-      async (_routingKey: string, _payload: any): Promise<boolean> => true
-    ),
+    publish: jest.fn(async (_routingKey: string, _payload: any) => true),
+  };
+
+  const pubSubServiceMock: Partial<PubSubService> = {
+    publish: jest.fn(async (_event: string, _payload: any) => {}),
   };
 
   beforeAll(async () => {
@@ -48,13 +51,13 @@ describe("RoomService (Integration)", () => {
       providers: [
         RoomService,
         { provide: EventsService, useValue: eventsServiceMock },
+        { provide: PubSubService, useValue: pubSubServiceMock }, // ✅ Provide mock
       ],
     }).compile();
 
     service = module.get(RoomService);
     dataSource = module.get(DataSource);
 
-    // Only initialize if not already connected
     if (!dataSource.isInitialized) {
       await dataSource.initialize();
     }
@@ -82,11 +85,11 @@ describe("RoomService (Integration)", () => {
     });
 
     const booking = await bookingRepo.save({
-      userId: 1, // Required for NOT NULL
+      userId: 1,
       roomId: room.id,
       status: BookingStatus.PENDING,
       startDate: new Date(),
-      endDate: new Date(Date.now() + 86400000), // +1 day
+      endDate: new Date(Date.now() + 86400000),
       services: [],
     });
 

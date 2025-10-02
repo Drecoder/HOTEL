@@ -13,7 +13,7 @@ const CheckOutPanel: React.FC<CheckOutPanelProps> = ({ onCompleted }) => {
 
   const [checkOut, { loading }] = useMutation(CHECK_OUT, {
     onCompleted: (data) => {
-      onCompleted?.(data.checkOutRoom);
+      onCompleted?.(data.checkOut);
       setRoomNumber("");
     },
     onError: (err) => alert(err.message),
@@ -32,8 +32,18 @@ const CheckOutPanel: React.FC<CheckOutPanelProps> = ({ onCompleted }) => {
     >
       <div className="flex items-center gap-2 mb-2">
         <span className="text-blue-500">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17 16l4-4m0 0l-4-4m4 4H7"
+            />
           </svg>
         </span>
         <h2 className="text-lg font-bold text-blue-700">Check Out</h2>
@@ -42,9 +52,15 @@ const CheckOutPanel: React.FC<CheckOutPanelProps> = ({ onCompleted }) => {
         type="number"
         placeholder="Room Number"
         value={roomNumber}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomNumber(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setRoomNumber(e.target.value)
+        }
       />
-      <Button type="submit" disabled={loading} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition">
+      <Button
+        type="submit"
+        disabled={loading}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition"
+      >
         {loading ? "Checking Out..." : "Check Out"}
       </Button>
     </form>
