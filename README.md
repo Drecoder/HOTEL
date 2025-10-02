@@ -15,4 +15,4 @@ Frontend: http://localhost:3000
 Backend: http://localhost:8080/graphql
 
 CI/CD
-Tests run automatically via GitHub Actions on push to main.
+Tests run automatically via GitHub Actions on push to main.# HOTEL
