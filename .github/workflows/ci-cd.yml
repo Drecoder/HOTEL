@@ -53,10 +53,27 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install wait-on
+        run: npm install --save-dev wait-on
+
       - name: Install backend deps
         run: |
           cd backend
           npm ci
+
+      - name: Build backend
+        run: |
+          cd backend
+          npm run build
+
+      - name: Start backend
+        run: |
+          cd backend
+          npm run start &
+
+      - name: Wait for backend GraphQL to be ready
+        run: |
+          npx wait-on http://localhost:8080/graphql
 
       - name: Run backend tests
         run: |
@@ -68,3 +85,7 @@ jobs:
           cd frontend/react-app
           npm ci
           npm run build
+
+      - name: Run E2E tests
+        run: |
+          npm run test:e2e
