@@ -31,8 +31,6 @@ jobs:
           --health-cmd "echo 'Kafka ready'"
           --health-interval 10s
           --health-retries 5
-        depends-on:
-          - postgres
 
     steps:
       - uses: actions/checkout@v3
