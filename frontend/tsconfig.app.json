@@ -8,13 +8,11 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
 
-    /* Module Resolution & Interop Fixes for React/Apollo */
-    "moduleResolution": "node", 
-    "allowSyntheticDefaultImports": true, // ADDED: Allows 'import React from "react"' syntax
-    "esModuleInterop": true,             // ADDED: Ensures compatibility between CommonJS and ES Modules
-    
-    // Removed: verbatimModuleSyntax and moduleDetection as they conflict with common React imports
-    "allowImportingTsExtensions": true, 
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
 
