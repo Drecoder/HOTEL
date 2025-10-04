@@ -1,57 +1,94 @@
 version: "3.9"
 
+volumes:
+  postgres_data:
+
 services:
-  # ----------------------------------------------------
-  # 1. CORE BACKEND SERVICE (Node.js/GraphQL/Kafka Consumer)
-  # ----------------------------------------------------
+  # ------------------------------
+  # BACKEND (NestJS)
+  # ------------------------------
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: hotel-ops-backend
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    container_name: hotel-ops-backend-dev
     ports:
       - "8080:8080"
       - "8081:8081"
-      # Host port 9092 removed here to avoid conflict with Kafka
-    restart: on-failure:5 # 🛠️ Ensures the service retries connection if Kafka isn't immediately ready (ECONNREFUSED)
     environment:
-      - DB_HOST=postgres
-      - DB_USER=admin
-      - DB_PASSWORD=admin123
-      - DB_NAME=admin
-      - DB_PORT=5432
-      - KAFKA_BROKERS=kafka:29092
-      - NODE_ENV=development
+      DB_HOST: postgres
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      DB_NAME: admin
+      DB_PORT: 5432
+      KAFKA_BROKERS: kafka:29092
+      NODE_ENV: development
     depends_on:
-      postgres:
-        condition: service_healthy
-      kafka:
-        condition: service_started 
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"] 
-      interval: 30s
-      timeout: 10s
-      retries: 5
+      - postgres
+      - kafka
+    profiles: ["dev"]
 
-  # ----------------------------------------------------
-  # 2. FRONTEND SERVICE (React App - The Client)
-  # ----------------------------------------------------
+  # ------------------------------
+  # USERS (NestJS)
+  # ------------------------------
+  users:
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile 
+    container_name: hotel-ops-users-dev
+    ports:
+      - "8082:8082"
+    environment:
+      DB_HOST: postgres
+      DB_USER: admin
+      DB_PASSWORD: admin123
+      DB_NAME: admin
+      DB_PORT: 5432
+      NODE_ENV: development
+    depends_on:
+      - postgres
+    profiles: ["dev"]
+
+  # ------------------------------
+  # FRONTEND (React)
+  # ------------------------------
   frontend:
     build:
-      context: ./frontend/react-app/
-      dockerfile: Dockerfile
-    container_name: hotel-ops-frontend
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    container_name: hotel-ops-frontend-dev
     ports:
-      - "3000:80"
+      - "3000:5173"
     environment:
-      - API_GATEWAY_URL=http://backend:8080/graphql
-      - WS_URL=ws://backend:8081/subscriptions
+      API_GATEWAY_URL: http://gateway:4000/graphql
+      WS_URL: ws://gateway:4000/subscriptions
+      NODE_ENV: development
+    depends_on:
+      - gateway
+    profiles: ["dev"]
+
+  # ------------------------------
+  # GATEWAY (Apollo)
+  # ------------------------------
+  gateway:
+    build:
+      context: .
+      dockerfile: ./apps/gateway/Dockerfile
+    container_name: hotel-ops-gateway-dev
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: development
+      SUBGRAPH_USERS_URL: http://users:8082/graphql
+      SUBGRAPH_BACKEND_URL: http://backend:8080/graphql
     depends_on:
       - backend
+      - users
+    profiles: ["dev"]
 
-  # ----------------------------------------------------
-  # 3. DATABASE (PostgreSQL - Source of Truth)
-  # ----------------------------------------------------
+  # ============================
+  # COMMON SERVICES (DB, Kafka/Zoo)
+  # ============================
   postgres:
     image: postgres:15
     container_name: hotel-ops-postgres
@@ -63,21 +100,18 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./db-init:/docker-entrypoint-initdb.d/
+      - ./apps/db-init:/docker-entrypoint-initdb.d/
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # ----------------------------------------------------
-  # 4. KAFKA INFRASTRUCTURE (Messaging Broker)
-  # ----------------------------------------------------
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: hotel-ops-zookeeper
     ports:
-      - '2181:2181'
+      - "2181:2181"
 
   kafka:
     image: confluentinc/cp-kafka:7.6.0
@@ -85,17 +119,12 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
-      # ✅ FIX for ENOTFOUND: Advertises internal hostname (kafka) and external hostname (localhost)
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,EXTERNAL://localhost:9092 
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,EXTERNAL://localhost:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
-      # Map Kafka's external port to your host machine
-      - "9092:9092" 
+      - "9092:9092"
     depends_on:
       - zookeeper
-
-volumes:
-  postgres_data:

@@ -1,0 +1,3 @@
+error TS5083: Cannot read file 'C:/Users/Owner/WS/demo/tsconfig.base.json'.
+error TS18003: No inputs were found in config file 'C:/Users/Owner/WS/demo/hotel/apps/frontend/tsconfig.app.json'. Specified 'include' paths were '["src/**/*.ts","src/**/*.tsx"]' and 'exclude' paths were '["node_modules","dist"]'.
+Warning: run-commands command "tsc -b tsconfig.app.json && vite build" exited with non-zero status code

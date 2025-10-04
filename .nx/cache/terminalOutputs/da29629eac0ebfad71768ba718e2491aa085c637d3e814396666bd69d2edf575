@@ -1,0 +1,2 @@
+error TS5083: Cannot read file 'C:/Users/Owner/WS/demo/tsconfig.base.json'.
+Warning: run-commands command "tsc -b tsconfig.app.json && vite build" exited with non-zero status code

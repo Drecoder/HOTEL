@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist/out-tsc",
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@hotel/auth/*": ["libs/auth/*"]
+    }
+  },
+    "include": ["**/*.ts"],
+  "exclude": ["node_modules", "tmp", "dist"]
+}

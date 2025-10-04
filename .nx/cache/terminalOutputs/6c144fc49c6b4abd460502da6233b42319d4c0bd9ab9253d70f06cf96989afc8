@@ -1,0 +1,72 @@
+Compiling TypeScript files for project "backend"...
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/auth/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/auth/src/lib/auth.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/cache/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/cache/src/lib/cache.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/common/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/common/src/lib/common.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/config/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/config/src/lib/config.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/db/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/db/src/lib/db.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/events/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/events/src/lib/events.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/kafka/jest.config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/kafka/src/lib/kafka.spec.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m  The file is in the program because:[39m[22m
+[1m[31m    Root file specified for compilation[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/auth/src/lib/auth.spec.ts[0m:[93m1[0m:[93m22[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/auth/src/lib/auth.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { auth } from './auth';[39m[22m
+[1m[31m[7m [0m [91m                     ~~~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/cache/src/lib/cache.spec.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/cache/src/lib/cache.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { cache } from './cache';[39m[22m
+[1m[31m[7m [0m [91m                      ~~~~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/common/src/lib/common.spec.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/common/src/lib/common.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { common } from './common';[39m[22m
+[1m[31m[7m [0m [91m                       ~~~~~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/config/src/lib/config.spec.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/config/src/lib/config.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { config } from './config';[39m[22m
+[1m[31m[7m [0m [91m                       ~~~~~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/db/src/lib/db.spec.ts[0m:[93m1[0m:[93m20[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/db/src/lib/db.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { db } from './db';[39m[22m
+[1m[31m[7m [0m [91m                   ~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/events/src/lib/events.spec.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/events/src/lib/events.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { events } from './events';[39m[22m
+[1m[31m[7m [0m [91m                       ~~~~~~~~~~[0m[39m[22m
+[1m[31m[96m/Users/Owner/WS/demo/hotel/libs/kafka/src/lib/kafka.spec.ts[0m:[93m1[0m:[93m23[0m - [91merror[0m[90m TS6059: [0mFile '/Users/Owner/WS/demo/hotel/libs/kafka/src/lib/kafka.ts' is not under 'rootDir' '/Users/Owner/WS/demo/hotel/apps/backend'. 'rootDir' is expected to contain all source files.[39m[22m
+[1m[31m[39m[22m
+[1m[31m[7m1[0m import { kafka } from './kafka';[39m[22m
+[1m[31m[7m [0m [91m                      ~~~~~~~~~[0m[39m[22m
+[1m[31m[39m[22m

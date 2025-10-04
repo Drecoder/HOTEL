@@ -1,0 +1,34 @@
+{
+  // Inherit base configuration (usually from tsconfig.json or tsconfig.base.json in the repo root)
+  "extends": "../../tsconfig.base.json",
+
+  "compilerOptions": {
+    // FIX 1: Set a broad rootDir to include the 'apps' and 'libs' directories.
+    // This tells TypeScript that the source code can be anywhere in the workspace root.
+    "rootDir": "../../",
+
+    // The output directory remains specific to this application
+    "outDir": "../../dist/apps/backend",
+
+    // This is the important change: allow the compiler to resolve modules
+    // even if they are outside the traditional root directory.
+    "allowSyntheticDefaultImports": true,
+
+    "types": [
+      "node",
+      "jest" // Include any other necessary types
+    ]
+  },
+   "include": [
+    "src/**/*.ts",
+    // This is correct: include all source files across the workspace
+  ],
+  
+  "exclude": [
+    // Correctly exclude test files at the app level
+    "**/*.spec.ts",
+    "jest.config.ts", 
+    
+    // CRITICAL: Exclude all test/config files from the libraries relative to the rootDir
+  ]
+}
