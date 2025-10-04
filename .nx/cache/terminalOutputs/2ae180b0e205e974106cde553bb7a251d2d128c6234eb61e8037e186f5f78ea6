@@ -1,5 +1,0 @@
-
-> frontend@0.0.0 build
-> tsc -b && vite build
-
-error TS18003: No inputs were found in config file 'C:/Users/Owner/WS/demo/hotel/apps/frontend/tsconfig.app.json'. Specified 'include' paths were '["src"]' and 'exclude' paths were '[]'.
