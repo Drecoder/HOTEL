@@ -1,7 +1,8 @@
 // jest.config.ts
-import type { Config } from "@jest/types";
+import type { InitialOptions } from "jest";
 
-const config: Config.InitialOptions = {
+
+const config: InitialOptions = {
   // Define separate projects for unit, integration, and e2e tests
   projects: [
     {

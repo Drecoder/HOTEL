@@ -19,10 +19,18 @@
     "nx.json": "*"
   },
   "projects": {
-    "backend": { "tags": [] },
-    "users": { "tags": [] },
-    "gateway": { "tags": [] },
-    "frontend": { "tags": [] }
+    "backend": {
+      "tags": []
+    },
+    "users": {
+      "tags": []
+    },
+    "gateway": {
+      "tags": []
+    },
+    "frontend": {
+      "tags": []
+    }
   },
   "targetDefaults": {
     "@nx/js:swc": {
@@ -40,5 +48,6 @@
     "test": {
       "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
     }
-  }
+  },
+  "nxCloudId": "68e14439058c4a1ed18c46e7"
 }

@@ -36,7 +36,7 @@
       },
       {
         "file": ".eslintrc.json",
-        "hash": "9483251403686547478"
+        "hash": "5374388142900849367"
       },
       {
         "file": ".github/workflows/ci-cd.yml",
@@ -68,23 +68,23 @@
       },
       {
         "file": "jest.config.ts",
-        "hash": "3069074216761126282"
+        "hash": "7544409015863045561"
       },
       {
         "file": "jest.preset.js",
-        "hash": "17666962557300311861"
+        "hash": "7473220183190921152"
       },
       {
         "file": "nx.json",
-        "hash": "1268502267457910572"
+        "hash": "14910454377848915404"
       },
       {
         "file": "package-lock.json",
-        "hash": "17235917511405081472"
+        "hash": "11202532972037834723"
       },
       {
         "file": "package.json",
-        "hash": "16032669054597437339"
+        "hash": "15804593092096764633"
       },
       {
         "file": "start.sh",
@@ -100,95 +100,64 @@
       }
     ],
     "projectFileMap": {
-      "auth": [
+      "common": [
         {
-          "file": "libs/auth/.eslintrc.json",
+          "file": "libs/common/.eslintrc.json",
           "hash": "14921153827776288937"
         },
         {
-          "file": "libs/auth/.swcrc",
+          "file": "libs/common/.swcrc",
           "hash": "4162408367651908302"
         },
         {
-          "file": "libs/auth/README.md",
-          "hash": "12731602805966891383"
+          "file": "libs/common/README.md",
+          "hash": "9603120900624697205"
         },
         {
-          "file": "libs/auth/jest.config.ts",
-          "hash": "11501722595185397030"
+          "file": "libs/common/jest.config.ts",
+          "hash": "5890544111566094807"
         },
         {
-          "file": "libs/auth/package.json",
-          "hash": "12796828511977681047"
+          "file": "libs/common/package.json",
+          "hash": "1740538359352300933"
         },
         {
-          "file": "libs/auth/project.json",
-          "hash": "11222895967635208799"
+          "file": "libs/common/project.json",
+          "hash": "2323182077399967270"
         },
         {
-          "file": "libs/auth/src/lib/auth.module.ts",
-          "hash": "8852185559811583729",
+          "file": "libs/common/src/lib/common.spec.ts",
+          "hash": "10011947948079732993"
+        },
+        {
+          "file": "libs/common/src/lib/common.ts",
+          "hash": "17094478998393317735"
+        },
+        {
+          "file": "libs/common/src/lib/index.ts",
+          "hash": "5516470289241152201"
+        },
+        {
+          "file": "libs/common/src/lib/kafka.constants.ts",
+          "hash": "1776088864409109993"
+        },
+        {
+          "file": "libs/common/src/lib/room-status.constants.ts",
+          "hash": "10050298150387996981",
           "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/auth/src/lib/auth.service.ts",
-          "hash": "7174845797427132415",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/auth/src/lib/auth.spec.ts",
-          "hash": "3212103323745325124"
-        },
-        {
-          "file": "libs/auth/src/lib/auth.ts",
-          "hash": "5649183672770272400"
-        },
-        {
-          "file": "libs/auth/src/lib/gql-auth.guard.ts",
-          "hash": "13482252768178807275",
-          "deps": [
-            "npm:@nestjs/common",
             "npm:@nestjs/graphql"
           ]
         },
         {
-          "file": "libs/auth/src/lib/index.ts",
-          "hash": "4301037077502880183"
-        },
-        {
-          "file": "libs/auth/src/lib/role.enum.ts",
-          "hash": "7749505871987123050"
-        },
-        {
-          "file": "libs/auth/src/lib/roles.decorators.ts",
-          "hash": "4800406769547068612",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "libs/auth/src/lib/roles.guard.ts",
-          "hash": "5012277744411399163",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/core",
-            "npm:@nestjs/graphql"
-          ]
-        },
-        {
-          "file": "libs/auth/tsconfig.json",
+          "file": "libs/common/tsconfig.json",
           "hash": "10294729341131714718"
         },
         {
-          "file": "libs/auth/tsconfig.lib.json",
+          "file": "libs/common/tsconfig.lib.json",
           "hash": "17512648156706774563"
         },
         {
-          "file": "libs/auth/tsconfig.spec.json",
+          "file": "libs/common/tsconfig.spec.json",
           "hash": "11194536110028348959"
         }
       ],
@@ -226,26 +195,6 @@
           ]
         }
       ],
-      "gateway": [
-        {
-          "file": "apps/gateway/Dockerfile",
-          "hash": "16147851086299365462"
-        },
-        {
-          "file": "apps/gateway/project.json",
-          "hash": "16986391366374278378"
-        },
-        {
-          "file": "apps/gateway/src/main.ts",
-          "hash": "6402103743717790585",
-          "deps": [
-            "npm:@apollo/gateway",
-            "npm:@nestjs/core",
-            "npm:@nestjs/graphql",
-            "npm:@nestjs/common"
-          ]
-        }
-      ],
       "config": [
         {
           "file": "libs/config/.eslintrc.json",
@@ -269,7 +218,7 @@
         },
         {
           "file": "libs/config/project.json",
-          "hash": "14783452343131370917"
+          "hash": "9129278116231285388"
         },
         {
           "file": "libs/config/src/lib/config.spec.ts",
@@ -310,9 +259,9 @@
         },
         {
           "file": "apps/backend/jest.config.ts",
-          "hash": "17236802809327317890",
+          "hash": "8113110463763508240",
           "deps": [
-            "npm:@jest/types"
+            "npm:jest"
           ]
         },
         {
@@ -320,19 +269,12 @@
           "hash": "10520071365169867"
         },
         {
-          "file": "apps/backend/package-lock.json",
-          "hash": "12657907246624187012"
-        },
-        {
           "file": "apps/backend/package.json",
-          "hash": "8792977932735917467",
-          "deps": [
-            "npm:@nrwl/nest"
-          ]
+          "hash": "2356791778568998913"
         },
         {
           "file": "apps/backend/project.json",
-          "hash": "14306574723441038362"
+          "hash": "2702735358395861405"
         },
         {
           "file": "apps/backend/src/app.module.ts",
@@ -539,6 +481,98 @@
           "hash": "11885619865033358188"
         }
       ],
+      "auth": [
+        {
+          "file": "libs/auth/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/auth/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/auth/README.md",
+          "hash": "12731602805966891383"
+        },
+        {
+          "file": "libs/auth/jest.config.ts",
+          "hash": "11501722595185397030"
+        },
+        {
+          "file": "libs/auth/package.json",
+          "hash": "12796828511977681047"
+        },
+        {
+          "file": "libs/auth/project.json",
+          "hash": "698102248235886894"
+        },
+        {
+          "file": "libs/auth/src/lib/auth.module.ts",
+          "hash": "8852185559811583729",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/auth.service.ts",
+          "hash": "7174845797427132415",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/auth.spec.ts",
+          "hash": "3212103323745325124"
+        },
+        {
+          "file": "libs/auth/src/lib/auth.ts",
+          "hash": "5649183672770272400"
+        },
+        {
+          "file": "libs/auth/src/lib/gql-auth.guard.ts",
+          "hash": "13482252768178807275",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/index.ts",
+          "hash": "4301037077502880183"
+        },
+        {
+          "file": "libs/auth/src/lib/role.enum.ts",
+          "hash": "7749505871987123050"
+        },
+        {
+          "file": "libs/auth/src/lib/roles.decorators.ts",
+          "hash": "4800406769547068612",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/roles.guard.ts",
+          "hash": "5012277744411399163",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "libs/auth/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/auth/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/auth/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
       "events": [
         {
           "file": "libs/events/.eslintrc.json",
@@ -562,7 +596,7 @@
         },
         {
           "file": "libs/events/project.json",
-          "hash": "1071520474166145702"
+          "hash": "12621809772230202018"
         },
         {
           "file": "libs/events/src/lib/events.spec.ts",
@@ -612,7 +646,7 @@
         },
         {
           "file": "libs/cache/project.json",
-          "hash": "952706413564276953"
+          "hash": "4105733520262825702"
         },
         {
           "file": "libs/cache/src/lib/cache.service.ts",
@@ -643,79 +677,6 @@
         },
         {
           "file": "libs/cache/tsconfig.spec.json",
-          "hash": "11194536110028348959"
-        }
-      ],
-      "kafka": [
-        {
-          "file": "libs/kafka/.eslintrc.json",
-          "hash": "14921153827776288937"
-        },
-        {
-          "file": "libs/kafka/.swcrc",
-          "hash": "4162408367651908302"
-        },
-        {
-          "file": "libs/kafka/README.md",
-          "hash": "14718312125470679691"
-        },
-        {
-          "file": "libs/kafka/jest.config.ts",
-          "hash": "10948941320243677288"
-        },
-        {
-          "file": "libs/kafka/package.json",
-          "hash": "15584902276697153489"
-        },
-        {
-          "file": "libs/kafka/project.json",
-          "hash": "10350013641516273148"
-        },
-        {
-          "file": "libs/kafka/src/lib/index.ts",
-          "hash": "4684619094753582395"
-        },
-        {
-          "file": "libs/kafka/src/lib/kafka.constants.ts",
-          "hash": "58099552178866818"
-        },
-        {
-          "file": "libs/kafka/src/lib/kafka.module.ts",
-          "hash": "14711394629803189395",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/microservices",
-            "config"
-          ]
-        },
-        {
-          "file": "libs/kafka/src/lib/kafka.service.ts",
-          "hash": "7614719700285009375",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:kafkajs",
-            "backend",
-            "cache"
-          ]
-        },
-        {
-          "file": "libs/kafka/src/lib/kafka.spec.ts",
-          "hash": "10204315006857752381"
-        },
-        {
-          "file": "libs/kafka/src/lib/kafka.ts",
-          "hash": "14838945068841087586"
-        },
-        {
-          "file": "libs/kafka/tsconfig.json",
-          "hash": "10294729341131714718"
-        },
-        {
-          "file": "libs/kafka/tsconfig.lib.json",
-          "hash": "17512648156706774563"
-        },
-        {
-          "file": "libs/kafka/tsconfig.spec.json",
           "hash": "11194536110028348959"
         }
       ],
@@ -776,67 +737,6 @@
         },
         {
           "file": "libs/db/tsconfig.spec.json",
-          "hash": "11194536110028348959"
-        }
-      ],
-      "common": [
-        {
-          "file": "libs/common/.eslintrc.json",
-          "hash": "14921153827776288937"
-        },
-        {
-          "file": "libs/common/.swcrc",
-          "hash": "4162408367651908302"
-        },
-        {
-          "file": "libs/common/README.md",
-          "hash": "9603120900624697205"
-        },
-        {
-          "file": "libs/common/jest.config.ts",
-          "hash": "5890544111566094807"
-        },
-        {
-          "file": "libs/common/package.json",
-          "hash": "1740538359352300933"
-        },
-        {
-          "file": "libs/common/project.json",
-          "hash": "7981962551779832737"
-        },
-        {
-          "file": "libs/common/src/lib/common.spec.ts",
-          "hash": "10011947948079732993"
-        },
-        {
-          "file": "libs/common/src/lib/common.ts",
-          "hash": "17094478998393317735"
-        },
-        {
-          "file": "libs/common/src/lib/index.ts",
-          "hash": "5516470289241152201"
-        },
-        {
-          "file": "libs/common/src/lib/kafka.constants.ts",
-          "hash": "1776088864409109993"
-        },
-        {
-          "file": "libs/common/src/lib/room-status.constants.ts",
-          "hash": "10050298150387996981",
-          "deps": [
-            "npm:@nestjs/graphql"
-          ]
-        },
-        {
-          "file": "libs/common/tsconfig.json",
-          "hash": "10294729341131714718"
-        },
-        {
-          "file": "libs/common/tsconfig.lib.json",
-          "hash": "17512648156706774563"
-        },
-        {
-          "file": "libs/common/tsconfig.spec.json",
           "hash": "11194536110028348959"
         }
       ],
@@ -1156,8 +1056,101 @@
             "npm:@vitejs/plugin-react"
           ]
         }
+      ],
+      "kafka": [
+        {
+          "file": "libs/kafka/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/kafka/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/kafka/README.md",
+          "hash": "14718312125470679691"
+        },
+        {
+          "file": "libs/kafka/jest.config.ts",
+          "hash": "10948941320243677288"
+        },
+        {
+          "file": "libs/kafka/package.json",
+          "hash": "15584902276697153489"
+        },
+        {
+          "file": "libs/kafka/project.json",
+          "hash": "12519458846758603748"
+        },
+        {
+          "file": "libs/kafka/src/lib/index.ts",
+          "hash": "4684619094753582395"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.constants.ts",
+          "hash": "58099552178866818"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.module.ts",
+          "hash": "14711394629803189395",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices",
+            "config"
+          ]
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.service.ts",
+          "hash": "7614719700285009375",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:kafkajs",
+            "backend",
+            "cache"
+          ]
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.spec.ts",
+          "hash": "10204315006857752381"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.ts",
+          "hash": "14838945068841087586"
+        },
+        {
+          "file": "libs/kafka/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/kafka/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/kafka/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "gateway": [
+        {
+          "file": "apps/gateway/Dockerfile",
+          "hash": "16147851086299365462"
+        },
+        {
+          "file": "apps/gateway/project.json",
+          "hash": "16986391366374278378"
+        },
+        {
+          "file": "apps/gateway/src/main.ts",
+          "hash": "6402103743717790585",
+          "deps": [
+            "npm:@apollo/gateway",
+            "npm:@nestjs/core",
+            "npm:@nestjs/graphql",
+            "npm:@nestjs/common"
+          ]
+        }
       ]
     }
   },
-  "externalNodesHash": "1751353294654976294"
+  "externalNodesHash": "14005083195445932245"
 }
