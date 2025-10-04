@@ -19,18 +19,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "backend": {
-      "tags": []
-    },
-    "users": {
-      "tags": []
-    },
-    "gateway": {
-      "tags": []
-    },
-    "frontend": {
-      "tags": []
-    }
+    "backend": { "tags": [] },
+    "users": { "tags": [] },
+    "gateway": { "tags": [] },
+    "frontend": { "tags": [] }
   },
   "targetDefaults": {
     "@nx/js:swc": {

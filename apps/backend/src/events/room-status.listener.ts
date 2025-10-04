@@ -9,7 +9,7 @@ import { RoomService } from "../room/room.service";
 // NOTE: EventsService is no longer needed in the listener for consumption!
 // Kafka consumption is handled automatically by the @MessagePattern decorator.
 // Update the import path to the correct location of kafka.constants
-import { KAFKA_TOPICS } from "";
+import { KAFKA_TOPICS } from "@hotel/kafka/src/lib/kafka.constants";
 
 @Controller() // Use @Controller or @EventGateway
 export class RoomStatusListener {

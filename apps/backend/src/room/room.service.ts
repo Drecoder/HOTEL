@@ -4,7 +4,7 @@ import { RoomEntity } from "./room.entity";
 import { Booking } from "../booking/entities/booking.entity";
 import { BookingStatus } from "../booking/entities/booking.entity";
 import { EventsService } from "../events/events.service";
-import { RoomStatus } from "@common/src/lib/room-status.constants";
+import { RoomStatus } from "@hotel/common/src/lib/room-status.constants";
 import { PubSubService } from "../graphql/pubsub.service"; // 👈 ADDED IMPORT
 
 @Injectable()

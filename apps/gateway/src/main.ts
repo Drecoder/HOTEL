@@ -18,7 +18,7 @@ const gateway = new ApolloGateway({
     { name: 'hotel', url: 'http://localhost:8080/graphql' },
   ],
   buildService({ url }) {
-    return new AuthenticatedDataSource({ url });
+    return new AuthenticatedDataSource();
   },
 });
 

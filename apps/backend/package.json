@@ -13,11 +13,20 @@
         "assets": []
       }
     },
+    "scripts": {
+      "serve:backend": "nx run backend:serve",
+      "build:backend": "nx run backend:build",
+      "serve:users": "nx run users:serve",
+      "build:users": "nx run users:build"
+    },
     "serve": {
       "executor": "@nx/js:node",
       "options": {
         "buildTarget": "backend:build"
       }
     }
+  },
+  "devDependencies": {
+    "@nrwl/nest": "^19.8.4"
   }
 }

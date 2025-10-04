@@ -8,7 +8,7 @@ import { ConfigModule } from "@nestjs/config";
 import { join } from "path";
 
 // Local Imports
-import { typeOrmConfig } from "@hotlel/auth";
+import { typeOrmConfig } from "@hotel/kafka";
 import { RoomModule } from "./room/room.module";
 import { EventsModule } from "./events/events.module";
 import { PubSubModule } from "./graphql/pubsub.module";

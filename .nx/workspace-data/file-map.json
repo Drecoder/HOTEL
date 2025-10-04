@@ -1,0 +1,1163 @@
+{
+  "version": "6.0",
+  "nxVersion": "21.6.3",
+  "pathMappings": {
+    "@hotel/auth": [
+      "libs/auth/src/index.ts"
+    ],
+    "@hotel/kafka": [
+      "libs/kafka/src/index.ts"
+    ],
+    "@hotel/common": [
+      "libs/common/src/index.ts"
+    ],
+    "@hotel/db": [
+      "libs/db/src/index.ts"
+    ],
+    "@hotel/cache": [
+      "libs/cache/src/index.ts"
+    ],
+    "@hotel/config": [
+      "libs/config/src/index.ts"
+    ],
+    "@hotel/events": [
+      "libs/events/src/index.ts"
+    ],
+    "@common": [
+      "libs/common/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".eslintignore",
+        "hash": "13404745306227114823"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "9483251403686547478"
+      },
+      {
+        "file": ".github/workflows/ci-cd.yml",
+        "hash": "14222467751595747998"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10366656254863960851"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "17085498363870782104"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "6820402234827505055"
+      },
+      {
+        "file": "README.md",
+        "hash": "16246789166049917500"
+      },
+      {
+        "file": "apps/db-init/setup_and_seed.sql",
+        "hash": "17358994374548937594"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "13952267010077136872"
+      },
+      {
+        "file": "jest.config.ts",
+        "hash": "3069074216761126282"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "17666962557300311861"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1268502267457910572"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "17235917511405081472"
+      },
+      {
+        "file": "package.json",
+        "hash": "16032669054597437339"
+      },
+      {
+        "file": "start.sh",
+        "hash": "2176688660033676700"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "8987599799327871653"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "11612714559148976496"
+      }
+    ],
+    "projectFileMap": {
+      "auth": [
+        {
+          "file": "libs/auth/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/auth/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/auth/README.md",
+          "hash": "12731602805966891383"
+        },
+        {
+          "file": "libs/auth/jest.config.ts",
+          "hash": "11501722595185397030"
+        },
+        {
+          "file": "libs/auth/package.json",
+          "hash": "12796828511977681047"
+        },
+        {
+          "file": "libs/auth/project.json",
+          "hash": "11222895967635208799"
+        },
+        {
+          "file": "libs/auth/src/lib/auth.module.ts",
+          "hash": "8852185559811583729",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/auth.service.ts",
+          "hash": "7174845797427132415",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/auth.spec.ts",
+          "hash": "3212103323745325124"
+        },
+        {
+          "file": "libs/auth/src/lib/auth.ts",
+          "hash": "5649183672770272400"
+        },
+        {
+          "file": "libs/auth/src/lib/gql-auth.guard.ts",
+          "hash": "13482252768178807275",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/index.ts",
+          "hash": "4301037077502880183"
+        },
+        {
+          "file": "libs/auth/src/lib/role.enum.ts",
+          "hash": "7749505871987123050"
+        },
+        {
+          "file": "libs/auth/src/lib/roles.decorators.ts",
+          "hash": "4800406769547068612",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "libs/auth/src/lib/roles.guard.ts",
+          "hash": "5012277744411399163",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "libs/auth/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/auth/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/auth/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "users": [
+        {
+          "file": "apps/users/Dockerfile",
+          "hash": "6500935886835025491"
+        },
+        {
+          "file": "apps/users/project.json",
+          "hash": "11399766042591148940"
+        },
+        {
+          "file": "apps/users/src/user.entity.ts",
+          "hash": "12165876372991324467",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/users/src/users.resolver.ts",
+          "hash": "13044774773573091227",
+          "deps": [
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "apps/users/src/users.service.ts",
+          "hash": "17506076886362330122",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:typeorm",
+            "npm:@nestjs/typeorm"
+          ]
+        }
+      ],
+      "gateway": [
+        {
+          "file": "apps/gateway/Dockerfile",
+          "hash": "16147851086299365462"
+        },
+        {
+          "file": "apps/gateway/project.json",
+          "hash": "16986391366374278378"
+        },
+        {
+          "file": "apps/gateway/src/main.ts",
+          "hash": "6402103743717790585",
+          "deps": [
+            "npm:@apollo/gateway",
+            "npm:@nestjs/core",
+            "npm:@nestjs/graphql",
+            "npm:@nestjs/common"
+          ]
+        }
+      ],
+      "config": [
+        {
+          "file": "libs/config/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/config/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/config/README.md",
+          "hash": "11658323240725393004"
+        },
+        {
+          "file": "libs/config/jest.config.ts",
+          "hash": "885250141471056041"
+        },
+        {
+          "file": "libs/config/package.json",
+          "hash": "3358242166988747432"
+        },
+        {
+          "file": "libs/config/project.json",
+          "hash": "14783452343131370917"
+        },
+        {
+          "file": "libs/config/src/lib/config.spec.ts",
+          "hash": "5277575116981421024"
+        },
+        {
+          "file": "libs/config/src/lib/config.ts",
+          "hash": "5563355329192399734"
+        },
+        {
+          "file": "libs/config/src/lib/index.ts",
+          "hash": "4146073972499655379"
+        },
+        {
+          "file": "libs/config/src/lib/kafka.config.ts",
+          "hash": "4665911190421251682",
+          "deps": [
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "libs/config/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/config/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/config/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "backend": [
+        {
+          "file": "apps/backend/Dockerfile",
+          "hash": "9984280901102765704"
+        },
+        {
+          "file": "apps/backend/jest.config.ts",
+          "hash": "17236802809327317890",
+          "deps": [
+            "npm:@jest/types"
+          ]
+        },
+        {
+          "file": "apps/backend/nest-cli.json",
+          "hash": "10520071365169867"
+        },
+        {
+          "file": "apps/backend/package-lock.json",
+          "hash": "12657907246624187012"
+        },
+        {
+          "file": "apps/backend/package.json",
+          "hash": "8792977932735917467",
+          "deps": [
+            "npm:@nrwl/nest"
+          ]
+        },
+        {
+          "file": "apps/backend/project.json",
+          "hash": "14306574723441038362"
+        },
+        {
+          "file": "apps/backend/src/app.module.ts",
+          "hash": "8064020569264524005",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm",
+            "npm:@nestjs/graphql",
+            "npm:@nestjs/apollo",
+            "npm:@nestjs/config",
+            "kafka"
+          ]
+        },
+        {
+          "file": "apps/backend/src/app.resolver.ts",
+          "hash": "5286201832324167328",
+          "deps": [
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/booking.module.ts",
+          "hash": "13760902654549277707",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/booking.resolver.ts",
+          "hash": "2621446249329064594",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/booking.service.ts",
+          "hash": "16071310841581543660",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/dto/create-booking.input.ts",
+          "hash": "10529830104326141863",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:class-validator",
+            "npm:class-transformer"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/entities/booking.entity.ts",
+          "hash": "7386892422735460405",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/booking/entities/service.entity.ts",
+          "hash": "14456405074798383052",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/events/events.module.ts",
+          "hash": "5674574342247115324",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices",
+            "npm:@nestjs/config"
+          ]
+        },
+        {
+          "file": "apps/backend/src/events/events.service.ts",
+          "hash": "14378723222195444319",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "apps/backend/src/events/room-status.listener.ts",
+          "hash": "15162324150352153892",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "apps/backend/src/graphql/graphql.module.ts",
+          "hash": "5314168752131569277",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "apps/backend/src/graphql/pubsub.module.ts",
+          "hash": "16707454692164322850",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/backend/src/graphql/pubsub.service.ts",
+          "hash": "4814832077054382334",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:graphql-subscriptions"
+          ]
+        },
+        {
+          "file": "apps/backend/src/main.ts",
+          "hash": "17041870751966755047",
+          "deps": [
+            "npm:@nestjs/core",
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices"
+          ]
+        },
+        {
+          "file": "apps/backend/src/room/room.entity.ts",
+          "hash": "11957895085686651679",
+          "deps": [
+            "npm:typeorm",
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "apps/backend/src/room/room.module.ts",
+          "hash": "10314700410013988598",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/room/room.resolver.ts",
+          "hash": "4133205863469257201",
+          "deps": [
+            "npm:@nestjs/graphql",
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/backend/src/room/room.service.ts",
+          "hash": "15051659709367653271",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/src/room/room.type.ts",
+          "hash": "5971750361858971265",
+          "deps": [
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "apps/backend/src/schema.gql",
+          "hash": "12248487224147707809"
+        },
+        {
+          "file": "apps/backend/test/e2e/testRoomFlow.e2e-spec.ts",
+          "hash": "3495808071298317507",
+          "deps": [
+            "npm:@jest/globals"
+          ]
+        },
+        {
+          "file": "apps/backend/test/integration/room.service.int-spec.ts",
+          "hash": "18084681002420509787",
+          "deps": [
+            "npm:@jest/globals",
+            "npm:@nestjs/testing",
+            "npm:@nestjs/typeorm",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/test/unit/room.service.spec.ts",
+          "hash": "12786273807511923868",
+          "deps": [
+            "npm:@nestjs/testing",
+            "npm:@nestjs/typeorm",
+            "npm:@jest/globals",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/backend/tsconfig.app.json",
+          "hash": "677453717424554431"
+        },
+        {
+          "file": "apps/backend/tsconfig.tsbuildinfo",
+          "hash": "11885619865033358188"
+        }
+      ],
+      "events": [
+        {
+          "file": "libs/events/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/events/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/events/README.md",
+          "hash": "8127457269921656654"
+        },
+        {
+          "file": "libs/events/jest.config.ts",
+          "hash": "16927453943123495068"
+        },
+        {
+          "file": "libs/events/package.json",
+          "hash": "7565724888522885261"
+        },
+        {
+          "file": "libs/events/project.json",
+          "hash": "1071520474166145702"
+        },
+        {
+          "file": "libs/events/src/lib/events.spec.ts",
+          "hash": "125262179251850164"
+        },
+        {
+          "file": "libs/events/src/lib/events.ts",
+          "hash": "9563554064794714590"
+        },
+        {
+          "file": "libs/events/src/lib/index.ts",
+          "hash": "10062851239094524947"
+        },
+        {
+          "file": "libs/events/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/events/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/events/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "cache": [
+        {
+          "file": "libs/cache/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/cache/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/cache/README.md",
+          "hash": "1689433157585537953"
+        },
+        {
+          "file": "libs/cache/jest.config.ts",
+          "hash": "17832314090033480434"
+        },
+        {
+          "file": "libs/cache/package.json",
+          "hash": "13911778255301740754"
+        },
+        {
+          "file": "libs/cache/project.json",
+          "hash": "952706413564276953"
+        },
+        {
+          "file": "libs/cache/src/lib/cache.service.ts",
+          "hash": "17395881633512963818",
+          "deps": [
+            "npm:node-cache"
+          ]
+        },
+        {
+          "file": "libs/cache/src/lib/cache.spec.ts",
+          "hash": "9542190090943192516"
+        },
+        {
+          "file": "libs/cache/src/lib/cache.ts",
+          "hash": "14040527482116308997"
+        },
+        {
+          "file": "libs/cache/src/lib/index.ts",
+          "hash": "16986944168502096784"
+        },
+        {
+          "file": "libs/cache/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/cache/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/cache/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "kafka": [
+        {
+          "file": "libs/kafka/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/kafka/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/kafka/README.md",
+          "hash": "14718312125470679691"
+        },
+        {
+          "file": "libs/kafka/jest.config.ts",
+          "hash": "10948941320243677288"
+        },
+        {
+          "file": "libs/kafka/package.json",
+          "hash": "15584902276697153489"
+        },
+        {
+          "file": "libs/kafka/project.json",
+          "hash": "10350013641516273148"
+        },
+        {
+          "file": "libs/kafka/src/lib/index.ts",
+          "hash": "4684619094753582395"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.constants.ts",
+          "hash": "58099552178866818"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.module.ts",
+          "hash": "14711394629803189395",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/microservices",
+            "config"
+          ]
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.service.ts",
+          "hash": "7614719700285009375",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:kafkajs",
+            "backend",
+            "cache"
+          ]
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.spec.ts",
+          "hash": "10204315006857752381"
+        },
+        {
+          "file": "libs/kafka/src/lib/kafka.ts",
+          "hash": "14838945068841087586"
+        },
+        {
+          "file": "libs/kafka/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/kafka/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/kafka/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "db": [
+        {
+          "file": "libs/db/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/db/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/db/README.md",
+          "hash": "878948317311239546"
+        },
+        {
+          "file": "libs/db/jest.config.ts",
+          "hash": "5592840894558326394"
+        },
+        {
+          "file": "libs/db/package.json",
+          "hash": "8391096005223564695"
+        },
+        {
+          "file": "libs/db/project.json",
+          "hash": "14533951667753528725"
+        },
+        {
+          "file": "libs/db/src/lib/db.spec.ts",
+          "hash": "16514430004441644939"
+        },
+        {
+          "file": "libs/db/src/lib/db.ts",
+          "hash": "16838585367459182629"
+        },
+        {
+          "file": "libs/db/src/lib/index.ts",
+          "hash": "1170450294563122107"
+        },
+        {
+          "file": "libs/db/src/lib/postgres.config.ts",
+          "hash": "15517728842491870814",
+          "deps": [
+            "npm:@nestjs/typeorm",
+            "backend",
+            "npm:dotenv",
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "libs/db/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/db/tsconfig.lib.json",
+          "hash": "6886894054087963104"
+        },
+        {
+          "file": "libs/db/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "common": [
+        {
+          "file": "libs/common/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "libs/common/.swcrc",
+          "hash": "4162408367651908302"
+        },
+        {
+          "file": "libs/common/README.md",
+          "hash": "9603120900624697205"
+        },
+        {
+          "file": "libs/common/jest.config.ts",
+          "hash": "5890544111566094807"
+        },
+        {
+          "file": "libs/common/package.json",
+          "hash": "1740538359352300933"
+        },
+        {
+          "file": "libs/common/project.json",
+          "hash": "7981962551779832737"
+        },
+        {
+          "file": "libs/common/src/lib/common.spec.ts",
+          "hash": "10011947948079732993"
+        },
+        {
+          "file": "libs/common/src/lib/common.ts",
+          "hash": "17094478998393317735"
+        },
+        {
+          "file": "libs/common/src/lib/index.ts",
+          "hash": "5516470289241152201"
+        },
+        {
+          "file": "libs/common/src/lib/kafka.constants.ts",
+          "hash": "1776088864409109993"
+        },
+        {
+          "file": "libs/common/src/lib/room-status.constants.ts",
+          "hash": "10050298150387996981",
+          "deps": [
+            "npm:@nestjs/graphql"
+          ]
+        },
+        {
+          "file": "libs/common/tsconfig.json",
+          "hash": "10294729341131714718"
+        },
+        {
+          "file": "libs/common/tsconfig.lib.json",
+          "hash": "17512648156706774563"
+        },
+        {
+          "file": "libs/common/tsconfig.spec.json",
+          "hash": "11194536110028348959"
+        }
+      ],
+      "frontend": [
+        {
+          "file": "apps/frontend/.gitignore",
+          "hash": "987422939859577920"
+        },
+        {
+          "file": "apps/frontend/Dockerfile",
+          "hash": "10953308376532198070"
+        },
+        {
+          "file": "apps/frontend/README.md",
+          "hash": "3552773547746253145"
+        },
+        {
+          "file": "apps/frontend/eslint.config.js",
+          "hash": "11040871416594087158",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:globals",
+            "npm:eslint"
+          ]
+        },
+        {
+          "file": "apps/frontend/index.html",
+          "hash": "16933567172252659493"
+        },
+        {
+          "file": "apps/frontend/package-lock.json",
+          "hash": "14464392296041272088"
+        },
+        {
+          "file": "apps/frontend/package.json",
+          "hash": "6180942373410107032",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@vitejs/plugin-react",
+            "npm:eslint",
+            "npm:globals",
+            "npm:typescript",
+            "npm:vite",
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/project.json",
+          "hash": "6216252203960664956"
+        },
+        {
+          "file": "apps/frontend/public/vite.svg",
+          "hash": "16046085400642193116"
+        },
+        {
+          "file": "apps/frontend/react-app/.gitignore",
+          "hash": "10366656254863960851"
+        },
+        {
+          "file": "apps/frontend/react-app/Dockerfile",
+          "hash": "781849801703156109"
+        },
+        {
+          "file": "apps/frontend/react-app/README.md",
+          "hash": "3552773547746253145"
+        },
+        {
+          "file": "apps/frontend/react-app/eslint.config.js",
+          "hash": "11040871416594087158",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:globals",
+            "npm:eslint"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/index.html",
+          "hash": "12900380901364410782"
+        },
+        {
+          "file": "apps/frontend/react-app/package-lock.json",
+          "hash": "10897507246129602006"
+        },
+        {
+          "file": "apps/frontend/react-app/package.json",
+          "hash": "2906812310708397026"
+        },
+        {
+          "file": "apps/frontend/react-app/postcss.config.js",
+          "hash": "10350708625867278669"
+        },
+        {
+          "file": "apps/frontend/react-app/public/vite.svg",
+          "hash": "16046085400642193116"
+        },
+        {
+          "file": "apps/frontend/react-app/src/App.tsx",
+          "hash": "14231783445545372631"
+        },
+        {
+          "file": "apps/frontend/react-app/src/apollo/client.ts",
+          "hash": "1947482723024311072",
+          "deps": [
+            "npm:graphql-ws"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/assets/react.svg",
+          "hash": "16069471864800376455"
+        },
+        {
+          "file": "apps/frontend/react-app/src/auth/AuthProviders.tsx",
+          "hash": "16427908191289477629",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/auth/ProtectedRoutes.tsx",
+          "hash": "7671880181820915359",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/RoomList.tsx",
+          "hash": "295478137369114666",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/layout/Card.tsx",
+          "hash": "5945457738498678519",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/layout/Section.tsx",
+          "hash": "18237921245268741982",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/panels/BookingForm.tsx",
+          "hash": "253372118861498460",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/panels/CheckOutPanel.tsx",
+          "hash": "721564068229732949",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/panels/CleanRoomPanel.tsx",
+          "hash": "6282029220430979958",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/ui/Button.tsx",
+          "hash": "7731026300568217537",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/ui/Input.tsx",
+          "hash": "10402836946832715029",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/components/ui/Select.tsx",
+          "hash": "864471831730028538",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/fragments/roomFragments.ts",
+          "hash": "12437948077118711672"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/mutations/checkIn.ts",
+          "hash": "12190664594152436610"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/mutations/checkOut.ts",
+          "hash": "16023389451229716829"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/mutations/cleanRoom.ts",
+          "hash": "560369301391233124"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/queries/getRooms.ts",
+          "hash": "9105702746312609885"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/queries/queries.ts",
+          "hash": "12952032653424890631"
+        },
+        {
+          "file": "apps/frontend/react-app/src/graphql/queries/roomSubscriptions.ts",
+          "hash": "18057304120657512603"
+        },
+        {
+          "file": "apps/frontend/react-app/src/hooks/useAvailableRooms.ts",
+          "hash": "1631045709270200887"
+        },
+        {
+          "file": "apps/frontend/react-app/src/hooks/useRoomStatus.js",
+          "hash": "11415671938173207824",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/index.js",
+          "hash": "3340151959343793719",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/main.tsx",
+          "hash": "3583314653730666506",
+          "deps": [
+            "npm:react",
+            "npm:react-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/pages/Dashboard.tsx",
+          "hash": "419012740774404961",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/pages/LoginPage.tsx",
+          "hash": "15237037961627267225",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/react-app/src/store/uiStore.tsx",
+          "hash": "6884382751423365476"
+        },
+        {
+          "file": "apps/frontend/react-app/src/styles/globals.css",
+          "hash": "5644881507391387562"
+        },
+        {
+          "file": "apps/frontend/react-app/src/types/graphql.ts",
+          "hash": "17175326610817700546"
+        },
+        {
+          "file": "apps/frontend/react-app/src/utils/formatters.js",
+          "hash": "6174015043920627096"
+        },
+        {
+          "file": "apps/frontend/react-app/tailwind.config.js",
+          "hash": "13710309856632343829"
+        },
+        {
+          "file": "apps/frontend/react-app/tsconfig.app.json",
+          "hash": "6311567178921148027"
+        },
+        {
+          "file": "apps/frontend/react-app/tsconfig.json",
+          "hash": "11226547063925144724"
+        },
+        {
+          "file": "apps/frontend/react-app/tsconfig.node.json",
+          "hash": "17660112278463046867"
+        },
+        {
+          "file": "apps/frontend/react-app/vite.config.ts",
+          "hash": "13144531941992273019",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/tsconfig.app.json",
+          "hash": "11128721547156525779"
+        },
+        {
+          "file": "apps/frontend/tsconfig.json",
+          "hash": "11226547063925144724"
+        },
+        {
+          "file": "apps/frontend/tsconfig.node.json",
+          "hash": "17660112278463046867"
+        },
+        {
+          "file": "apps/frontend/vite.config.ts",
+          "hash": "13144531941992273019",
+          "deps": [
+            "npm:vite",
+            "npm:@vitejs/plugin-react"
+          ]
+        }
+      ]
+    }
+  },
+  "externalNodesHash": "1751353294654976294"
+}

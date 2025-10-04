@@ -12,12 +12,13 @@
     "tailwind:init": "tailwindcss init -p"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.0",
-    "graphql": "^16.8.0",
+    "@apollo/client": "^3.14.0",
+    "graphql": "^16.11.0",
     "graphql-ws": "^6.0.6",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.3",
+    "subscriptions-transport-ws": "^0.11.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
