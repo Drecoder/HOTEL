@@ -64,25 +64,25 @@ services:
   # -------------------------------
   # 5. Backend
   # -------------------------------
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: ./apps/backend/Dockerfile
-  #   container_name: hotel-ops-backend
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     NODE_ENV: development
-  #     DB_USER: admin
-  #     DB_PASSWORD: 123password
-  #     DB_NAME: hotel
-  #     DB_PORT: 5432
-  #     DB_HOST: localhost
-  #     KAFKA_BROKER: kafka:9092
-  #   depends_on:
-  #     - postgres
-  #     - redis
-  #     - kafka
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+    container_name: hotel-ops-backend
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: development
+      DB_USER: admin
+      DB_PASSWORD: 123password
+      DB_NAME: hotel
+      DB_PORT: 5432
+      DB_HOST: localhost
+      KAFKA_BROKER: kafka:9092
+    depends_on:
+      - postgres
+      - redis
+      - kafka
 
   # -------------------------------
   # 6. Frontend
@@ -94,5 +94,5 @@ services:
     container_name: hotel-ops-frontend
     ports:
       - "3000:5173"
-    # depends_on:
-    #   - backend
+    depends_on:
+      - backend

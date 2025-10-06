@@ -35,11 +35,6 @@ COPY . .
 # -----------------------------
 RUN npx nx build backend --prod
 
-# -----------------------------
-# 7. Entrypoint
-# -----------------------------
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
 
 # -----------------------------
 # 8. Expose & run

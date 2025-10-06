@@ -26,7 +26,7 @@ docker compose up --build -d \
   postgres \
   zookeeper \
   kafka \
-#   backend
+  backend
 
 if [ $? -ne 0 ]; then
     echo "❌ Docker Compose failed to start the services. Exiting."
@@ -59,7 +59,7 @@ check_running() {
     return 1
 }
 
-services=("frontend" "postgres" "zookeeper" "kafka") # "backend"
+services=("frontend" "postgres" "zookeeper" "kafka" "backend")
 for svc in "${services[@]}"; do
     check_running $svc
 done
@@ -69,7 +69,7 @@ echo "🎉 SUCCESS! All services are running."
 echo "------------------------------------------------------------------"
 echo "APPLICATIONS ARE AVAILABLE ON YOUR HOST MACHINE:"
 echo "Frontend (React/Vite):    http://localhost:3000"
-# echo "Backend Service (GraphQL): http://localhost:8080"
+echo "Backend Service (GraphQL): http://localhost:8080"
 echo "Postgres DB:              localhost:5433"
 echo "Kafka Broker (internal):  kafka:9092"
 echo "Kafka Broker (host):      localhost:9092"
@@ -78,4 +78,4 @@ echo
 
 # --- 4. Tail logs for active services ---
 echo "4️⃣  Monitoring service logs (Ctrl+C to stop)..."
-docker compose logs -f frontend postgres zookeeper kafka #ackend
+docker compose logs -f frontend postgres zookeeper kafka backend

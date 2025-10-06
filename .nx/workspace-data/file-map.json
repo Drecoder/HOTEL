@@ -11,72 +11,76 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "jest.config.ts",
-        "hash": "7544409015863045561"
+        "file": "package-lock.json",
+        "hash": "1633559152725724169"
       },
       {
-        "file": "nx.json",
-        "hash": "1918115854670317258"
+        "file": ".eslintignore",
+        "hash": "13404745306227114823"
       },
       {
-        "file": "package.json",
-        "hash": "16673491058241781254"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "5374388142900849367"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "17085498363870782104"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "1698658754182090162"
+        "file": "apps/db-init/init.sql",
+        "hash": "8651978184726953897"
       },
       {
         "file": "README.md",
         "hash": "16246789166049917500"
       },
       {
-        "file": "node",
-        "hash": "3244421341483603138"
+        "file": ".github/workflows/ci-cd.yml",
+        "hash": "1287746581184559447"
       },
       {
-        "file": "package-lock.json",
-        "hash": "1633559152725724169"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "7473220183190921152"
-      },
-      {
-        "file": "src/schema.gql",
-        "hash": "1531841813273188077"
-      },
-      {
-        "file": "tmp/apps/backend/build/tsconfig.generated.c0fa8d32-5948-438d-bbc3-e143f32c0f22.json",
-        "hash": "13873156337534974020"
-      },
-      {
-        "file": "start.sh",
-        "hash": "13256058130715959626"
-      },
-      {
-        "file": "tsconfig.json",
-        "hash": "13150298736631296800"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "6820402234827505055"
+        "file": "package.json",
+        "hash": "16673491058241781254"
       },
       {
         "file": "codegen.ts",
         "hash": "446765724494122871"
       },
       {
-        "file": ".github/workflows/ci-cd.yml",
-        "hash": "1287746581184559447"
+        "file": "jest.preset.js",
+        "hash": "7473220183190921152"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "1698658754182090162"
+      },
+      {
+        "file": "src/schema.gql",
+        "hash": "1531841813273188077"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "13150298736631296800"
+      },
+      {
+        "file": "node",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "start.sh",
+        "hash": "9511626823561815371"
+      },
+      {
+        "file": "nx.json",
+        "hash": "1918115854670317258"
+      },
+      {
+        "file": "tmp/apps/backend/build/tsconfig.generated.c0fa8d32-5948-438d-bbc3-e143f32c0f22.json",
+        "hash": "13873156337534974020"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "9946681267007535674"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "6820402234827505055"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "5374388142900849367"
       },
       {
         "file": "nx",
@@ -87,16 +91,12 @@
         "hash": "18335889748308275406"
       },
       {
-        "file": "docker-compose.yml",
-        "hash": "17491499291732426628"
+        "file": ".prettierignore",
+        "hash": "17085498363870782104"
       },
       {
-        "file": ".eslintignore",
-        "hash": "13404745306227114823"
-      },
-      {
-        "file": "apps/db-init/init.sql",
-        "hash": "8651978184726953897"
+        "file": "jest.config.ts",
+        "hash": "7544409015863045561"
       }
     ],
     "projectFileMap": {
@@ -123,7 +123,7 @@
       "backend": [
         {
           "file": "apps/backend/Dockerfile",
-          "hash": "17605004658682053184"
+          "hash": "3109700876797349596"
         },
         {
           "file": "apps/backend/jest.config.ts",
