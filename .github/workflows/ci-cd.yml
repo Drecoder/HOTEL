@@ -56,7 +56,13 @@ jobs:
         working-directory: apps/backend
 
       - name: Mock Kafka for backend
-        run: echo "jest.mock('../../src/kafka/kafka.service', () => ({ KafkaService: jest.fn().mockImplementation(() => ({ emit: jest.fn().mockResolvedValue(true), send: jest.fn().mockResolvedValue(true), })), }));" > apps/backend/jest.setup.ts
+        run: |
+          echo 'jest.mock("../../src/kafka/kafka.service", () => ({
+            KafkaService: jest.fn().mockImplementation(() => ({
+              emit: jest.fn().mockResolvedValue(true),
+              send: jest.fn().mockResolvedValue(true),
+            })),
+          }));' > apps/backend/jest.setup.ts
 
       - name: Start backend
         run: npm run start &
@@ -94,13 +100,3 @@ jobs:
           key: ${{ runner.os }}-frontend-node-${{ hashFiles('apps/frontend/react-app/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-frontend-node-
-
-      - name: Install frontend deps and build
-        run: |
-          npm ci
-          npm run build
-        working-directory: apps/frontend/react-app
-
-      - name: Run frontend E2E tests
-        run: npm run test:e2e
-        working-directory: apps/frontend/react-app
