@@ -1,130 +1,98 @@
-version: "3.9"
-
-volumes:
-  postgres_data:
-
 services:
-  # ------------------------------
-  # BACKEND (NestJS)
-  # ------------------------------
-  backend:
-    build:
-      context: .
-      dockerfile: ./apps/backend/Dockerfile
-    container_name: hotel-ops-backend-dev
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    environment:
-      DB_HOST: postgres
-      DB_USER: admin
-      DB_PASSWORD: admin123
-      DB_NAME: admin
-      DB_PORT: 5432
-      KAFKA_BROKERS: kafka:29092
-      NODE_ENV: development
-    depends_on:
-      - postgres
-      - kafka
-    profiles: ["dev"]
-
-  # ------------------------------
-  # USERS (NestJS)
-  # ------------------------------
-  users:
-    build:
-      context: .
-      dockerfile: ./apps/users/Dockerfile 
-    container_name: hotel-ops-users-dev
-    ports:
-      - "8082:8082"
-    environment:
-      DB_HOST: postgres
-      DB_USER: admin
-      DB_PASSWORD: admin123
-      DB_NAME: admin
-      DB_PORT: 5432
-      NODE_ENV: development
-    depends_on:
-      - postgres
-    profiles: ["dev"]
-
-  # ------------------------------
-  # FRONTEND (React)
-  # ------------------------------
-  frontend:
-    build:
-      context: .
-      dockerfile: ./apps/frontend/Dockerfile
-    container_name: hotel-ops-frontend-dev
-    ports:
-      - "3000:5173"
-    environment:
-      API_GATEWAY_URL: http://gateway:4000/graphql
-      WS_URL: ws://gateway:4000/subscriptions
-      NODE_ENV: development
-    depends_on:
-      - gateway
-    profiles: ["dev"]
-
-  # ------------------------------
-  # GATEWAY (Apollo)
-  # ------------------------------
-  gateway:
-    build:
-      context: .
-      dockerfile: ./apps/gateway/Dockerfile
-    container_name: hotel-ops-gateway-dev
-    ports:
-      - "4000:4000"
-    environment:
-      NODE_ENV: development
-      SUBGRAPH_USERS_URL: http://users:8082/graphql
-      SUBGRAPH_BACKEND_URL: http://backend:8080/graphql
-    depends_on:
-      - backend
-      - users
-    profiles: ["dev"]
-
-  # ============================
-  # COMMON SERVICES (DB, Kafka/Zoo)
-  # ============================
+  # -------------------------------
+  # 1. PostgreSQL
+  # -------------------------------
   postgres:
     image: postgres:15
     container_name: hotel-ops-postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: admin
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hotel
+    volumes:
+       - ./apps/db-init/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5433:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./apps/db-init:/docker-entrypoint-initdb.d/
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin"]
-      interval: 10s
-      timeout: 5s
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
       retries: 5
 
+  # -------------------------------
+  # 2. Redis
+  # -------------------------------
+  redis:
+    image: redis:7
+    container_name: hotel-ops-redis
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 5
+
+  # -------------------------------
+  # 3. Zookeeper (Kafka dependency)
+  # -------------------------------
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: hotel-ops-zookeeper
     ports:
       - "2181:2181"
-
-  kafka:
-    image: confluentinc/cp-kafka:7.6.0
-    container_name: hotel-ops-kafka
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,EXTERNAL://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zookeeper:2888:3888
+
+  # -------------------------------
+  # 4. Kafka
+  # -------------------------------
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
     ports:
       - "9092:9092"
+    container_name: hotel-ops-kafka
     depends_on:
       - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  # -------------------------------
+  # 5. Backend
+  # -------------------------------
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/backend/Dockerfile
+  #   container_name: hotel-ops-backend
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     NODE_ENV: development
+  #     DB_USER: admin
+  #     DB_PASSWORD: 123password
+  #     DB_NAME: hotel
+  #     DB_PORT: 5432
+  #     DB_HOST: localhost
+  #     KAFKA_BROKER: kafka:9092
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #     - kafka
+
+  # -------------------------------
+  # 6. Frontend
+  # -------------------------------
+  frontend:
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    container_name: hotel-ops-frontend
+    ports:
+      - "3000:5173"
+    # depends_on:
+    #   - backend

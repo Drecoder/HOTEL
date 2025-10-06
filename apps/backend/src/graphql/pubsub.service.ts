@@ -1,34 +1,42 @@
-import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from '@nestjs/common';
-import { PubSub } from 'graphql-subscriptions';
-import type { PubSubEngine } from 'graphql-subscriptions';
-// import { RedisPubSub } from 'graphql-redis-subscriptions'; // For production
+import { Injectable, OnModuleDestroy, Logger } from '@nestjs/common';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { RedisOptions } from 'ioredis';
 
 @Injectable()
-export class PubSubService implements OnModuleInit, OnModuleDestroy {
+export class PubSubService implements OnModuleDestroy {
   private readonly logger = new Logger(PubSubService.name);
-  private readonly pubSub: PubSub<any>; // use concrete PubSub type
+  private readonly pubSub: RedisPubSub;
 
   constructor() {
-    // Initialize in-memory PubSub
-    this.pubSub = new PubSub<any>();
-    this.logger.log('✅ PubSub service initialized (in-memory)');
+    const options: RedisOptions = {
+      host: 'localhost',
+      port: 6379,
+      retryStrategy: times => Math.min(times * 50, 2000),
+    };
+
+    this.pubSub = new RedisPubSub({ connection: options });
+    this.logger.log('✅ RedisPubSub initialized');
   }
 
-  onModuleInit() {
-    // Connection check for RedisPubSub could go here
+  async publish<T>(trigger: string, payload: T): Promise<void> {
+    this.logger.verbose(`📢 Publishing to ${trigger}`);
+    await this.pubSub.publish(trigger, payload);
+  }
+
+  async subscribe<T>(trigger: string, handler: (payload: T) => void): Promise<number> {
+    return this.pubSub.subscribe(trigger, handler);
+  }
+
+  async unsubscribe(subId: number): Promise<void> {
+    await this.pubSub.unsubscribe(subId);
+  }
+
+  asyncIterator<T>(trigger: string | string[]): AsyncIterator<T> {
+    return this.pubSub.asyncIterator(trigger);
   }
 
   onModuleDestroy() {
-    // Cleanup (e.g. RedisPubSub.disconnect())
-  }
-
-  async publish<T>(triggerName: string, payload: T): Promise<void> {
-    this.logger.verbose(`📢 Publishing event: ${triggerName}`);
-    await this.pubSub.publish(triggerName, payload);
-  }
-
-  asyncIterator<T>(triggers: string | string[]): AsyncIterator<T> {
-    // PubSub from graphql-subscriptions provides asyncIterator()
-    return this.pubSub.asyncIterator<T>(triggers);
+    this.pubSub.close();
+    this.logger.log('🛑 RedisPubSub connection closed');
   }
 }

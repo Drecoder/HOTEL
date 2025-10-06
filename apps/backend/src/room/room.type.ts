@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int, ID, registerEnumType } from '@nestjs/graphql';
-import { RoomStatus } from '@hotel/common/src/lib/room-status.enum';
+import { RoomStatus } from '../common/room-status.constants';
 
 registerEnumType(RoomStatus, {
   name: 'RoomStatus',

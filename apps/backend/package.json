@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "nx:run-commands",
       "options": {
         "outputPath": "dist/apps/backend",
         "main": "apps/backend/src/main.ts",
@@ -13,16 +13,25 @@
         "assets": []
       }
     },
-    "scripts": {
-      "serve:backend": "nx run backend:serve",
-      "build:backend": "nx run backend:build",
-      "serve:users": "nx run users:serve",
-      "build:users": "nx run users:build"
-    },
     "serve": {
       "executor": "@nx/js:node",
       "options": {
         "buildTarget": "backend:build"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/backend/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "e2e": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/backend/jest.e2e.config.ts",
+        "passWithNoTests": true
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-  "extends": "../../../tsconfig.base.json",  // Correctly points up 3 levels to the workspace root
+  "extends": "../../tsconfig.base.json",  // Correctly points up 3 levels to the workspace root
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",

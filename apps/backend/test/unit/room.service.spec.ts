@@ -6,7 +6,7 @@ import { EventsService } from "../../src/events/events.service";
 import { PubSubService } from "../../src/graphql/pubsub.service";
 import { getRepositoryToken } from "@nestjs/typeorm";
 // Update the import path below to match the actual location of room-status.constants.ts
-import { RoomStatus } from "@hotel/common/src/lib/room-status.constants";
+import { RoomStatus } from "../../src/common/room-status.constants";
 import { jest, describe, beforeEach, it, expect } from "@jest/globals";
 import { EntityManager } from "typeorm";
 

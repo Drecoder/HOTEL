@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException, Logger } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, EntityManager } from "typeorm";
 import { RoomEntity } from "./room.entity";
 import { Booking } from "../booking/entities/booking.entity";
 import { BookingStatus } from "../booking/entities/booking.entity";
 import { EventsService } from "../events/events.service";
-import { RoomStatus } from "@hotel/common/src/lib/room-status.constants";
+import { RoomStatus } from "../common/room-status.constants";
 import { PubSubService } from "../graphql/pubsub.service"; // 👈 ADDED IMPORT
 
 @Injectable()
@@ -290,8 +291,5 @@ export class RoomService {
     // 4. Save the updated or new room
     return this.roomRepository.save(room);
   }
-}
-function InjectRepository(RoomEntity: any): (target: typeof RoomService, propertyKey: undefined, parameterIndex: 0) => void {
-  throw new Error("Function not implemented.");
 }
 

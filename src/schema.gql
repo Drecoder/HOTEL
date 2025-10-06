@@ -1,0 +1,73 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Booking {
+  endDate: DateTime!
+  id: ID!
+  room: RoomEntity!
+  roomNumber: Int!
+  services: [Service!]
+  startDate: DateTime!
+  status: BookingStatus!
+  userId: ID!
+}
+
+enum BookingStatus {
+  CANCELLED
+  CHECKED_IN
+  PENDING
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  checkIn(bookingId: Int!, roomNumber: Int!): Booking!
+  checkOut(roomNumber: Int!): RoomType!
+  cleanRoom(roomNumber: Int!): RoomType!
+
+  """Resets a room to a READY status for testing purposes."""
+  resetRoom(roomNumber: Int!): RoomType!
+}
+
+type Query {
+  findAllRooms: [RoomType!]!
+  rooms: [RoomType!]!
+  serverHealth: Boolean!
+}
+
+type RoomEntity {
+  expectedCheckout: DateTime
+  id: ID!
+  roomNumber: Float!
+  status: RoomStatus!
+}
+
+"""The current cleanliness and occupancy status of the hotel room"""
+enum RoomStatus {
+  CLEANING
+  DIRTY
+  MAINTENANCE
+  OCCUPIED
+  READY
+}
+
+type RoomType {
+  expectedCheckout: DateTime
+  id: ID!
+  roomNumber: Int!
+  roomType: RoomStatus
+  status: RoomStatus!
+}
+
+type Service {
+  id: ID!
+  name: String!
+}
+
+type Subscription {
+  roomUpdated: RoomType!
+}

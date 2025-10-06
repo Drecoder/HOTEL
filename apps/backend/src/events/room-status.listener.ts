@@ -9,7 +9,7 @@ import { RoomService } from "../room/room.service";
 // NOTE: EventsService is no longer needed in the listener for consumption!
 // Kafka consumption is handled automatically by the @MessagePattern decorator.
 // Update the import path to the correct location of kafka.constants
-import { KAFKA_TOPICS } from "@hotel/kafka/src/lib/kafka.constants";
+import { KAFKA_TOPICS } from "../kafka/kafka.constants";
 
 @Controller() // Use @Controller or @EventGateway
 export class RoomStatusListener {
@@ -30,7 +30,7 @@ export class RoomStatusListener {
    * The underlying kafkajs client handles deserialization and ACK/NACK automatically
    * based on whether an exception is thrown.
    */
-  @MessagePattern(KAFKA_TOPICS.ROOM_READY_EVENT)
+  @MessagePattern(KAFKA_TOPICS.ROOM_EVENTS)
   async handleRoomReadyEvent(@Payload() payload: any): Promise<void> {
     
     // NOTE: The payload is the JSON object already parsed by the NestJS microservice layer.

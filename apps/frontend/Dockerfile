@@ -1,17 +1,29 @@
-FROM node:20-alpine
+# Stage 1: Builder (Builds the static assets)
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy monorepo root package files
-COPY package*.json nx.json tsconfig.base.json ./
+# Copy root-level config and install dependencies
+COPY package.json package-lock.json nx.json tsconfig.base.json ./
+RUN npm install
 
-# Install dependencies
-RUN npm install --legacy-peer-deps
+# Copy the full source code (Nx needs access to project graph)
+COPY . .
 
-# Copy frontend app code
-COPY apps/frontend ./apps/frontend
+# Build the frontend app using Nx
+RUN npx nx build frontend
 
-# Expose Vite port
-EXPOSE 5173
+# Stage 2: Production Runner (Serves the static assets)
+FROM node:20-alpine AS runner
+WORKDIR /app
 
-# Start frontend dev server
-CMD ["npm", "run", "dev", "--workspace", "frontend"]
+# Install the 'serve' utility globally to host the static files
+RUN npm install -g serve
+
+# Copy only the built static assets
+COPY --from=builder /app/dist/apps/frontend/. ./dist/
+
+# Frontend runs on 3000
+EXPOSE 3000
+
+# Command to serve the static files from the 'dist' directory
+CMD ["serve", "-s", "dist", "-l", "3000"]

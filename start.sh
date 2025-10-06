@@ -2,91 +2,80 @@
 
 # ======================================================
 # hotel-ops-demo Start Script
-# Author: [Your Name]
-# Purpose: Builds, cleans up, and launches the entire multi-service stack 
-#          Defaults to dev profile unless --prod flag is passed
+# Purpose: Builds, cleans up, and launches the multi-service stack including backend.
 # ======================================================
 
-PROFILE="dev"
-if [ "$1" == "--prod" ]; then
-    PROFILE="prod"
+# --- Load environment variables from .env (optional) ---
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+    echo "📄 Loaded environment variables from .env"
 fi
 
 echo
-echo "🚀 Starting Hotel Operations Microservices Stack (Profile: $PROFILE)..."
+echo "🚀 Starting Hotel Operations Microservices Stack..."
 echo
 
-# --- 1. Stop and remove old containers & volumes ---
-echo "1️⃣  Stopping and removing existing containers and volumes..."
-docker compose down -v
-if [ $? -ne 0 ]; then
-    echo "❌ Failed to stop existing containers. Exiting."
-    exit 1
-fi
+# --- 1. Stop and remove old containers & optionally volumes ---
+echo "1️⃣  Stopping and removing existing containers..."
+docker compose down -v  # remove -v if you want to preserve DB data
 
 # --- 2. Build and start the stack ---
-echo "2️⃣  Building images and launching all containers..."
-docker compose --profile $PROFILE up --build -d
+echo "2️⃣  Building images and launching containers..."
+docker compose up --build -d \
+  frontend \
+  postgres \
+  zookeeper \
+  kafka \
+#   backend
+
 if [ $? -ne 0 ]; then
     echo "❌ Docker Compose failed to start the services. Exiting."
     exit 1
 fi
 
-# --- 3. Wait for critical services to be healthy ---
-echo "3️⃣  Waiting for PostgreSQL, Backend, Users, Gateway, and Frontend services..."
+# --- 3. Wait for containers to be running ---
+echo "3️⃣  Waiting for core services to start..."
 
-check_health() {
+check_running() {
     local service=$1
-    local max_attempts=30
-    local delay=5
-    local url=$2
+    local max_attempts=20
+    local delay=4
     local attempts=0
 
     while [ $attempts -lt $max_attempts ]; do
-        if [ -z "$url" ]; then
-            # Docker healthcheck
-            status=$(docker inspect --format='{{.State.Health.Status}}' "$service" 2>/dev/null)
-            if [ "$status" == "healthy" ]; then
-                echo "✅ $service is healthy."
-                return 0
-            fi
-        else
-            # HTTP healthcheck
-            if curl -s -f "$url" > /dev/null; then
-                echo "✅ $service is responding at $url."
-                return 0
-            fi
+        status=$(docker compose ps -q $service | xargs docker inspect -f '{{.State.Running}}' 2>/dev/null)
+        
+        if [ "$status" == "true" ]; then
+            echo "✅ $service is running."
+            return 0
         fi
-        echo "⏳ Waiting for $service... ($((attempts+1))/$max_attempts)"
+        
+        echo "⏳ Waiting for $service to be running... ($((attempts+1))/$max_attempts)"
         sleep $delay
         attempts=$((attempts+1))
     done
 
-    echo "⚠️  $service did not become healthy/respond in time."
+    echo "⚠️  $service did not start in time. Check 'docker logs $service'."
     return 1
 }
 
-# Core services (update names depending on dev/prod)
-services=("hotel-ops-postgres" "hotel-ops-backend" "hotel-ops-users" "hotel-ops-gateway")
+services=("frontend" "postgres" "zookeeper" "kafka") # "backend"
 for svc in "${services[@]}"; do
-    check_health $svc
+    check_running $svc
 done
 
-# Frontend HTTP check
-check_health "hotel-ops-frontend" "http://localhost:3000"
-
 echo
-echo "🎉 SUCCESS! All core services are healthy and running."
+echo "🎉 SUCCESS! All services are running."
 echo "------------------------------------------------------------------"
 echo "APPLICATIONS ARE AVAILABLE ON YOUR HOST MACHINE:"
-echo "Frontend (React/Vite):  http://localhost:3000"
-echo "Backend (GraphQL API):  http://localhost:8080/graphql"
-echo "Users Service GraphQL:  http://localhost:8082/graphql"
-echo "Apollo Gateway:         http://localhost:4000/graphql"
-echo "Kafka Broker:           localhost:9092"
+echo "Frontend (React/Vite):    http://localhost:3000"
+# echo "Backend Service (GraphQL): http://localhost:8080"
+echo "Postgres DB:              localhost:5433"
+echo "Kafka Broker (internal):  kafka:9092"
+echo "Kafka Broker (host):      localhost:9092"
 echo "------------------------------------------------------------------"
 echo
 
-# --- 4. Tail logs for all core services ---
-echo "4️⃣  Monitoring core service logs (Ctrl+C to stop)..."
-docker compose --profile $PROFILE logs -f backend users gateway frontend postgres kafka zookeeper
+# --- 4. Tail logs for active services ---
+echo "4️⃣  Monitoring service logs (Ctrl+C to stop)..."
+docker compose logs -f frontend postgres zookeeper kafka #ackend

@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { ObjectType, Field, ID } from "@nestjs/graphql";
-import { RoomStatus } from "@hotel/common/src/lib/room-status.constants";
+import { RoomStatus } from "../common/room-status.constants";
 import { Booking } from "../booking/entities/booking.entity"; // Add this import
 
 @Entity("rooms")

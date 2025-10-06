@@ -8,11 +8,11 @@ import { ConfigModule } from "@nestjs/config";
 import { join } from "path";
 
 // Local Imports
-import { typeOrmConfig } from "@hotel/kafka";
+import { typeOrmConfig } from "./db/postgres.config";
 import { RoomModule } from "./room/room.module";
 import { EventsModule } from "./events/events.module";
 import { PubSubModule } from "./graphql/pubsub.module";
-import { KafkaService } from "@hotel/kafka";
+import { KafkaService } from "./kafka/kafka.service";
 
 @Module({
   imports: [
@@ -38,6 +38,7 @@ import { KafkaService } from "@hotel/kafka";
     RoomModule,
     EventsModule,
   ],
+  
   providers: [KafkaService],
 })
 export class AppModule {}

@@ -18,7 +18,7 @@ import {
 import { Service } from "../../src/booking/entities/service.entity";
 import { EventsService } from "../../src/events/events.service";
 import { PubSubService } from "../../src/graphql/pubsub.service"; // ✅ Add import
-import { RoomStatus } from "@hotel/common/constants/room-status.constants";
+import { RoomStatus } from "../../src/common/room-status.constants";
 import { DataSource } from "typeorm";
 
 jest.setTimeout(30000);

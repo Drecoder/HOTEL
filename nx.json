@@ -1,13 +1,4 @@
 {
-  "npmScope": "hotel",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "serve"]
-      }
-    }
-  },
   "workspaceLayout": {
     "appsDir": "apps",
     "libsDir": "libs"
@@ -43,11 +34,20 @@
         "default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore"
-      ]
+      ],
+      "cache": true
     },
     "test": {
-      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"],
+      "cache": true
+    },
+    "build": {
+      "cache": true
+    },
+    "serve": {
+      "cache": true
     }
   },
-  "nxCloudId": "68e14439058c4a1ed18c46e7"
+  "nxCloudId": "68e14439058c4a1ed18c46e7",
+  "plugins": ["@nx/vite"]
 }

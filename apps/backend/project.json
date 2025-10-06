@@ -4,18 +4,41 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/nest:build",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/backend",
-        "tsConfig": "apps/backend/tsconfig.app.json",
-        "main": "apps/backend/src/main.ts"
+        "main": "apps/backend/src/main.ts",
+        "tsConfig": "apps/backend/tsconfig.json",
+        "assets": []
       }
     },
     "serve": {
-     "executor": "@nx/node:node",
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
       "options": {
-        "buildTarget": "backend:build"
+        "command": "node dist/apps/backend/src/main.js"
+      }
+    },
+    "dev": {
+      "executor": "@nx/workspace:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx nx build backend --watch"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node-dev --respawn --transpile-only apps/backend/src/main.ts"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/backend"],
+      "options": {
+        "jestConfig": "apps/backend/jest.config.ts",
+        "passWithNoTests": true
       }
     }
   }

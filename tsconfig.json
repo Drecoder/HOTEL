@@ -5,18 +5,17 @@
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitAny": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2020"],
     "paths": {
       "@hotel/auth/*": ["libs/auth/*"]
     }
   },
-    "include": ["**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "tmp",
-    "dist",
-  ]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "tmp", "dist"]
 }
