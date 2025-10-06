@@ -11,92 +11,100 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "package-lock.json",
-        "hash": "1633559152725724169"
-      },
-      {
-        "file": ".eslintignore",
-        "hash": "13404745306227114823"
-      },
-      {
-        "file": "apps/db-init/init.sql",
-        "hash": "8651978184726953897"
-      },
-      {
-        "file": "README.md",
-        "hash": "16246789166049917500"
-      },
-      {
-        "file": ".github/workflows/ci-cd.yml",
-        "hash": "1287746581184559447"
-      },
-      {
-        "file": "package.json",
-        "hash": "16673491058241781254"
-      },
-      {
-        "file": "codegen.ts",
-        "hash": "446765724494122871"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "7473220183190921152"
+        "file": "reset-docker.sh",
+        "hash": "13080527148010871019"
       },
       {
         "file": ".gitignore",
         "hash": "1698658754182090162"
       },
       {
-        "file": "src/schema.gql",
-        "hash": "1531841813273188077"
-      },
-      {
-        "file": "tsconfig.json",
-        "hash": "13150298736631296800"
-      },
-      {
-        "file": "node",
-        "hash": "3244421341483603138"
-      },
-      {
-        "file": "start.sh",
-        "hash": "9511626823561815371"
+        "file": "docker-compose.yml",
+        "hash": "2338712844428171717"
       },
       {
         "file": "nx.json",
         "hash": "1918115854670317258"
       },
       {
-        "file": "tmp/apps/backend/build/tsconfig.generated.c0fa8d32-5948-438d-bbc3-e143f32c0f22.json",
-        "hash": "13873156337534974020"
+        "file": ".eslintrc.json",
+        "hash": "5374388142900849367"
       },
       {
-        "file": "docker-compose.yml",
-        "hash": "9946681267007535674"
+        "file": "jest.config.ts",
+        "hash": "7544409015863045561"
       },
       {
         "file": ".prettierrc",
         "hash": "6820402234827505055"
       },
       {
-        "file": ".eslintrc.json",
-        "hash": "5374388142900849367"
+        "file": "tmp/apps/backend/build/tsconfig.generated.c0fa8d32-5948-438d-bbc3-e143f32c0f22.json",
+        "hash": "13873156337534974020"
+      },
+      {
+        "file": "README.md",
+        "hash": "16246789166049917500"
+      },
+      {
+        "file": "start.sh",
+        "hash": "1153607080425498394"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "13150298736631296800"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "11060864222743998915"
       },
       {
         "file": "nx",
         "hash": "3244421341483603138"
       },
       {
-        "file": "tsconfig.base.json",
-        "hash": "18335889748308275406"
+        "file": "jest.preset.js",
+        "hash": "7473220183190921152"
+      },
+      {
+        "file": "src/schema.gql",
+        "hash": "1531841813273188077"
+      },
+      {
+        "file": "codegen.ts",
+        "hash": "446765724494122871"
+      },
+      {
+        "file": "monitor-logs.sh",
+        "hash": "6324358221459914663"
+      },
+      {
+        "file": ".github/workflows/ci-cd.yml",
+        "hash": "11909987400730753480"
+      },
+      {
+        "file": "apps/db-init/init.sql",
+        "hash": "8651978184726953897"
+      },
+      {
+        "file": "package.json",
+        "hash": "15359631617044370799"
       },
       {
         "file": ".prettierignore",
         "hash": "17085498363870782104"
       },
       {
-        "file": "jest.config.ts",
-        "hash": "7544409015863045561"
+        "file": ".eslintignore",
+        "hash": "13404745306227114823"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "18335889748308275406"
+      },
+      {
+        "file": "node",
+        "hash": "3244421341483603138"
       }
     ],
     "projectFileMap": {
@@ -123,7 +131,7 @@
       "backend": [
         {
           "file": "apps/backend/Dockerfile",
-          "hash": "3109700876797349596"
+          "hash": "6981774406467204919"
         },
         {
           "file": "apps/backend/jest.config.ts",
@@ -135,6 +143,10 @@
         {
           "file": "apps/backend/nest-cli.json",
           "hash": "10520071365169867"
+        },
+        {
+          "file": "apps/backend/package-lock.json",
+          "hash": "6473924004475794423"
         },
         {
           "file": "apps/backend/package.json",
@@ -416,8 +428,9 @@
         },
         {
           "file": "apps/backend/test/e2e/testRoomFlow.e2e-spec.ts",
-          "hash": "3495808071298317507",
+          "hash": "2024728692860007545",
           "deps": [
+            "npm:kafkajs",
             "npm:@jest/globals"
           ]
         },
@@ -461,7 +474,7 @@
         },
         {
           "file": "apps/frontend/Dockerfile",
-          "hash": "5848787095651058233"
+          "hash": "14503294202460231770"
         },
         {
           "file": "apps/frontend/README.md",
@@ -481,12 +494,16 @@
           "hash": "17083181023334068014"
         },
         {
+          "file": "apps/frontend/nginx.conf",
+          "hash": "2804332689391805122"
+        },
+        {
           "file": "apps/frontend/package-lock.json",
-          "hash": "14464392296041272088"
+          "hash": "7087084640531722728"
         },
         {
           "file": "apps/frontend/package.json",
-          "hash": "9808021536894336416",
+          "hash": "1608440106011004008",
           "deps": [
             "npm:@eslint/js",
             "npm:@types/react",
@@ -496,8 +513,6 @@
             "npm:globals",
             "npm:typescript",
             "npm:vite",
-            "npm:react",
-            "npm:react-dom",
             "npm:@apollo/client"
           ]
         },
@@ -519,10 +534,7 @@
         },
         {
           "file": "apps/frontend/src/App.tsx",
-          "hash": "14231783445545372631",
-          "deps": [
-            "npm:react-router-dom"
-          ]
+          "hash": "14231783445545372631"
         },
         {
           "file": "apps/frontend/src/apollo/client.ts",
@@ -540,59 +552,58 @@
           "file": "apps/frontend/src/auth/AuthProviders.tsx",
           "hash": "16427908191289477629",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/auth/ProtectedRoutes.tsx",
           "hash": "7671880181820915359",
           "deps": [
-            "npm:react",
-            "npm:react-router-dom"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/RoomList.tsx",
           "hash": "295478137369114666",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/layout/Card.tsx",
           "hash": "5945457738498678519",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/layout/Section.tsx",
           "hash": "18237921245268741982",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/panels/BookingForm.tsx",
-          "hash": "16109135528762697171",
+          "hash": "3458992768045813566",
           "deps": [
-            "npm:react",
+            "npm:@types/react",
             "npm:@apollo/client"
           ]
         },
         {
           "file": "apps/frontend/src/components/panels/CheckOutPanel.tsx",
-          "hash": "2305331101082623406",
+          "hash": "5363914253559295390",
           "deps": [
-            "npm:react",
+            "npm:@types/react",
             "npm:@apollo/client"
           ]
         },
         {
           "file": "apps/frontend/src/components/panels/CleanRoomPanel.tsx",
-          "hash": "1766193321253140398",
+          "hash": "6933514543015912252",
           "deps": [
-            "npm:react",
+            "npm:@types/react",
             "npm:@apollo/client"
           ]
         },
@@ -600,21 +611,21 @@
           "file": "apps/frontend/src/components/ui/Button.tsx",
           "hash": "7731026300568217537",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/ui/Input.tsx",
           "hash": "10402836946832715029",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
           "file": "apps/frontend/src/components/ui/Select.tsx",
           "hash": "864471831730028538",
           "deps": [
-            "npm:react"
+            "npm:@types/react"
           ]
         },
         {
@@ -668,16 +679,16 @@
         },
         {
           "file": "apps/frontend/src/hooks/useAvailableRooms.ts",
-          "hash": "1631045709270200887",
+          "hash": "16722101003624133457",
           "deps": [
             "npm:@apollo/client"
           ]
         },
         {
           "file": "apps/frontend/src/hooks/useRoomStatus.js",
-          "hash": "11415671938173207824",
+          "hash": "7789670283522444409",
           "deps": [
-            "npm:react",
+            "npm:@types/react",
             "npm:@apollo/client"
           ]
         },
@@ -685,8 +696,8 @@
           "file": "apps/frontend/src/index.js",
           "hash": "3340151959343793719",
           "deps": [
-            "npm:react",
-            "npm:react-dom",
+            "npm:@types/react",
+            "npm:@types/react-dom",
             "npm:@apollo/client"
           ]
         },
@@ -694,9 +705,8 @@
           "file": "apps/frontend/src/main.tsx",
           "hash": "1788481554782926650",
           "deps": [
-            "npm:react",
-            "npm:react-dom",
-            "npm:react-router-dom",
+            "npm:@types/react",
+            "npm:@types/react-dom",
             "npm:@apollo/client"
           ]
         },
@@ -704,7 +714,7 @@
           "file": "apps/frontend/src/pages/Dashboard.tsx",
           "hash": "7973908642560177953",
           "deps": [
-            "npm:react",
+            "npm:@types/react",
             "npm:@apollo/client"
           ]
         },
@@ -712,8 +722,7 @@
           "file": "apps/frontend/src/pages/LoginPage.tsx",
           "hash": "15237037961627267225",
           "deps": [
-            "npm:react",
-            "npm:react-router-dom"
+            "npm:@types/react"
           ]
         },
         {
@@ -736,12 +745,16 @@
           "hash": "6174015043920627096"
         },
         {
+          "file": "apps/frontend/stats.html",
+          "hash": "6355779144962086335"
+        },
+        {
           "file": "apps/frontend/tailwind.config.js",
           "hash": "8997367049449538344"
         },
         {
           "file": "apps/frontend/tsconfig.app.json",
-          "hash": "6020094568831136672"
+          "hash": "6847561000004639317"
         },
         {
           "file": "apps/frontend/tsconfig.json",
@@ -753,7 +766,7 @@
         },
         {
           "file": "apps/frontend/vite.config.ts",
-          "hash": "2248383152136750354",
+          "hash": "18177370727717453624",
           "deps": [
             "npm:vite",
             "npm:@vitejs/plugin-react",
@@ -797,5 +810,5 @@
       ]
     }
   },
-  "externalNodesHash": "2933503293744346195"
+  "externalNodesHash": "13626515206925014633"
 }

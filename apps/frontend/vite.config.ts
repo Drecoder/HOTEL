@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-
 export default defineConfig({
   root: path.resolve(__dirname),
   build: {
@@ -16,10 +15,19 @@ export default defineConfig({
   plugins: [react(), visualizer()],
   resolve: {
     alias: {
-      '@apollo/client': path.resolve(__dirname, '../../node_modules/@apollo/client'),
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
     },
   },
   optimizeDeps: {
-    include: ['@apollo/client'],
+    include: ['@apollo/client', 'graphql', 'zustand'],
+    esbuildOptions: {
+      // make sure esbuild sees react in this monorepo
+      resolveExtensions: ['.ts', '.tsx', '.js', '.jsx', '.mjs'],
+    },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
   },
 });

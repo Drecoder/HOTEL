@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { GET_AVAILABLE_ROOMS, GET_BOOKING_IDS } from '../graphql/queries/queries';
 import type { Room, Booking } from '../types/graphql';
 

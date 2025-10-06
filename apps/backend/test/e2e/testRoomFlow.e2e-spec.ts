@@ -1,4 +1,5 @@
 import assert from "assert";
+import { Kafka } from 'kafkajs';
 import { describe, it } from "@jest/globals";
 
 const GRAPHQL_ENDPOINT = "http://localhost:8080/graphql";
@@ -20,6 +21,27 @@ interface GraphQLError {
 interface GraphQLResponse<T = any> {
   data?: T;
   errors?: GraphQLError[];
+}
+
+const brokers = (process.env.KAFKA_BROKERS || 'localhost:9092').split(',');
+
+async function testKafkaConnection() {
+  const kafka = new Kafka({ clientId: 'test-client', brokers });
+  const producer = kafka.producer();
+  try {
+    await producer.connect();
+    console.log('✅ Kafka connection successful!');
+    await producer.disconnect();
+    return true;
+  } catch (err) {
+    console.error('❌ Kafka connection failed', err);
+    return false;
+  }
+}
+
+// --- Run Kafka test if this file is executed directly ---
+if (require.main === module) {
+  testKafkaConnection();
 }
 
 // --- Run mutation ---

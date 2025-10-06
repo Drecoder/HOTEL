@@ -1,22 +1,20 @@
 # -----------------------------
-# 1️⃣ Build Stage
+# 1️⃣ Builder Stage
 # -----------------------------
 FROM node:20-alpine3.22 AS builder
 
-ENV NODE_ENV=development
 WORKDIR /app
 
-# 1. Copy root and backend package files
+# Copy root files
 COPY package.json package-lock.json nx.json tsconfig.base.json ./
-COPY apps/backend/package*.json ./apps/backend/
 
-# 2. Install all dependencies (including dev) for Nx build
+# Install all deps including dev (needed for Nx build)
 RUN npm ci
 
-# 3. Copy backend source
+# Copy backend source
 COPY apps/backend ./apps/backend
 
-# 4. Build backend
+# Build backend
 RUN npm run build:backend
 
 # -----------------------------
@@ -24,20 +22,19 @@ RUN npm run build:backend
 # -----------------------------
 FROM node:20-alpine3.22
 
+WORKDIR /app
+
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
     PORT=8080
 
-WORKDIR /app
-
-# 1. Copy only what we need from builder
+# Copy dist + package files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/package-lock.json ./package-lock.json
 
-# 2. Install only production dependencies
+# Install only production deps
 RUN npm ci --omit=dev
 
-# 3. Expose and run
 EXPOSE 8080
 CMD ["node", "dist/apps/backend/main.js"]

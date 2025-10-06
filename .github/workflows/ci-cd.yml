@@ -8,7 +8,7 @@ on:
 
 jobs:
   # ------------------------------
-  # 1️⃣ Backend Tests
+  # Backend Tests (Mock Kafka)
   # ------------------------------
   backend-tests:
     runs-on: ubuntu-latest
@@ -17,8 +17,8 @@ jobs:
         image: postgres:15
         env:
           POSTGRES_USER: admin
-          POSTGRES_PASSWORD: admin123
-          POSTGRES_DB: admin
+          POSTGRES_PASSWORD: 123password
+          POSTGRES_DB: hotel
         options: >-
           --health-cmd "pg_isready -U admin"
           --health-interval 10s
@@ -33,50 +33,29 @@ jobs:
         with:
           node-version: 20
 
-      # ------------------------------
-      # Cache backend Node modules
-      # ------------------------------
-      - name: Cache backend Node modules
-        uses: actions/cache@v3
-        with:
-          path: apps/backend/node_modules
-          key: ${{ runner.os }}-backend-node-${{ hashFiles('apps/backend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-backend-node-
-
-      # ------------------------------
-      # Install, Build & Test Backend
-      # ------------------------------
       - name: Install backend deps
         run: npm ci
         working-directory: apps/backend
 
-      - name: Build backend
-        run: npm run build
-        working-directory: apps/backend
-
       - name: Mock Kafka for backend
         run: |
-          echo 'jest.mock("../../src/kafka/kafka.service", () => ({
+          echo "jest.mock('../../src/kafka/kafka.service', () => ({
             KafkaService: jest.fn().mockImplementation(() => ({
               emit: jest.fn().mockResolvedValue(true),
               send: jest.fn().mockResolvedValue(true),
             })),
-          }));' > apps/backend/jest.setup.ts
+          }));" > apps/backend/jest.setup.ts
 
-      - name: Start backend
-        run: npm run start &
+      - name: Build backend
+        run: npm run build:backend
         working-directory: apps/backend
-
-      - name: Wait for backend GraphQL
-        run: npx wait-on http://localhost:8080/graphql
 
       - name: Run backend tests
         run: npm run test --if-present
         working-directory: apps/backend
 
   # ------------------------------
-  # 2️⃣ Frontend E2E Tests
+  # Frontend E2E Tests
   # ------------------------------
   frontend-e2e:
     runs-on: ubuntu-latest
@@ -90,13 +69,14 @@ jobs:
         with:
           node-version: 20
 
-      # ------------------------------
-      # Cache frontend Node modules
-      # ------------------------------
-      - name: Cache frontend Node modules
-        uses: actions/cache@v3
-        with:
-          path: apps/frontend/react-app/node_modules
-          key: ${{ runner.os }}-frontend-node-${{ hashFiles('apps/frontend/react-app/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-frontend-node-
+      - name: Install frontend deps
+        run: npm ci
+        working-directory: apps/frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: apps/frontend
+
+      - name: Run frontend E2E tests
+        run: npm run test:e2e
+        working-directory: apps/frontend

@@ -2,16 +2,24 @@ import React, { useState, type ChangeEvent, type FormEvent } from "react";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 import { useMutation } from "@apollo/client/react";
-import { CHECK_OUT } from "../../graphql/mutations/checkOut.ts";
+import { CHECK_OUT } from "../../graphql/mutations/checkOut";
+
+interface CheckOutData {
+  checkOut: { roomNumber: number; status: string };
+}
+
+interface CheckOutVars {
+  roomNumber: number;
+}
 
 interface CheckOutPanelProps {
-  onCompleted?: (data: any) => void;
+  onCompleted?: (data: CheckOutData["checkOut"]) => void;
 }
 
 const CheckOutPanel: React.FC<CheckOutPanelProps> = ({ onCompleted }) => {
   const [roomNumber, setRoomNumber] = useState("");
 
-  const [checkOut, { loading }] = useMutation(CHECK_OUT, {
+  const [checkOut, { loading }] = useMutation<CheckOutData, CheckOutVars>(CHECK_OUT, {
     onCompleted: (data) => {
       onCompleted?.(data.checkOut);
       setRoomNumber("");
@@ -26,41 +34,9 @@ const CheckOutPanel: React.FC<CheckOutPanelProps> = ({ onCompleted }) => {
   };
 
   return (
-    <form
-      className="flex flex-col gap-4 p-6 bg-blue-50 border-2 border-blue-200 rounded-2xl shadow-lg"
-      onSubmit={handleSubmit}
-    >
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-blue-500">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 16l4-4m0 0l-4-4m4 4H7"
-            />
-          </svg>
-        </span>
-        <h2 className="text-lg font-bold text-blue-700">Check Out</h2>
-      </div>
-      <Input
-        type="number"
-        placeholder="Room Number"
-        value={roomNumber}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setRoomNumber(e.target.value)
-        }
-      />
-      <Button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition"
-      >
+    <form className="flex flex-col gap-4 p-6 bg-blue-50 border-2 border-blue-200 rounded-2xl shadow-lg" onSubmit={handleSubmit}>
+      <Input type="number" placeholder="Room Number" value={roomNumber} onChange={(e: ChangeEvent<HTMLInputElement>) => setRoomNumber(e.target.value)} />
+      <Button type="submit" disabled={loading}>
         {loading ? "Checking Out..." : "Check Out"}
       </Button>
     </form>

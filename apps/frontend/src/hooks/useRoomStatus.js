@@ -1,6 +1,6 @@
 // src/hooks/useRoomStatus.js
 import { useState, useEffect, useCallback } from "react";
-import { useQuery, useSubscription } from "@apollo/client";
+import { useQuery, useSubscription } from "@apollo/client/react";
 import { GET_ROOMS } from "../graphql/queries/getRooms";
 import { ROOM_STATUS_UPDATED } from "../graphql/queries/roomSubscriptions";
 
