@@ -1,4 +1,3 @@
-```markdown
 # HOTEL — Event-Driven Microservices Platform
 
 Production-grade hotel operations platform demonstrating event-driven architecture using Kafka.
@@ -22,16 +21,17 @@ This platform demonstrates:
 
 ## Architecture Flow
 
-```
-Frontend → GraphQL API → Kafka Producer → Event Bus (Kafka)
-                                              ↓
-                                    ┌─────────┼─────────┐
-                                    ↓         ↓         ↓
-                              Inventory   Payment   Notification
-                              Service     Service   Service
-                              (Consumer)  (Consumer) (Consumer)
-                                    ↓         ↓         ↓
-                              PostgreSQL  PostgreSQL  PostgreSQL
+```mermaid
+graph TD
+    A[Frontend] --> B[GraphQL API]
+    B --> C[Kafka Producer]
+    C --> D[Event Bus<br/>Kafka]
+    D --> E[Inventory Service<br/>Consumer]
+    D --> F[Payment Service<br/>Consumer]
+    D --> G[Notification Service<br/>Consumer]
+    E --> H[(PostgreSQL)]
+    F --> I[(PostgreSQL)]
+    G --> J[(PostgreSQL)]
 ```
 
 ## Saga Pattern Example
@@ -58,4 +58,3 @@ GitHub Actions runs tests on every push to main.
 ## Why This Matters for Your Project
 
 This architecture is directly transferable to your order → payment → inventory flow. Replace Kafka with GCP Pub/Sub, and the patterns are identical.
-```
